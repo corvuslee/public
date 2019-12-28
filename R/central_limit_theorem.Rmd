@@ -1,0 +1,328 @@
+---
+title: "Central Limit Theorem"
+author: Corvus LEE
+date: 2019-12-28
+output:
+  github_document:
+    toc: yes
+---
+
+```{r include=FALSE}
+# backup system default par
+opar <- par(no.readonly = TRUE)
+
+# define my default par
+default_par <- function(){
+  par(opar)
+  par(col='grey', col.axis='grey', col.lab='grey', col.main='grey', col.sub='grey')
+}
+```
+# 1. What is CLT?
+
+If the sample size is sufficiently large enough, then the mean of the samples will follow a normal distribution, no matter what the underlying population distribution is. In this notebook I will illustrate how well the theorem applies to different distributions with different sample sizes.
+
+# 2. Population: Normal distribution
+
+```{r}
+# Generate a standard normal population with size 10000
+set.seed(8000)
+y <- rnorm(10000)
+```
+
+```{r echo=FALSE}
+# Visualize the population distribution
+default_par()
+par(mfrow=c(1,2))
+
+# Histogram
+hist(y, col='dodgerblue', ann=FALSE, xaxt='n', yaxt='n', border='white')
+title(xlab='population distribution')
+axis(1, col='grey')
+abline(v=mean(y), col='black', lty=2)
+text(x=2.2, y=1700, paste('mean=',round(mean(y),2)), col='black')
+
+# QQ plot
+qqnorm(y, col='dodgerblue', ann=FALSE, xaxt='n', yaxt='n', frame.plot=FALSE)
+title(xlab='normal quantiles', ylab='population quantiles')
+axis(1, col='grey')
+axis(2, col='grey')
+qqline(y, col='black')
+```
+
+Sample mean will always follow normal distribution for all sample sizes
+
+```{r}
+# Generate 500 samples with sample size of one
+sample <- double()
+set.seed(8001)
+for (i in 1:500) {
+  sample <- append(sample, sample(y,1))
+}
+```
+
+```{r echo=FALSE}
+# Visualize the sample distribution
+default_par()
+par(mfrow=c(1,2))
+
+# Histogram
+hist(sample, col='orange', ann=FALSE, xaxt='n', yaxt='n', border='white')
+title(xlab='sample distribution')
+axis(1, col='grey')
+abline(v=mean(sample), col='black', lty=2)
+text(x=1.4, y=90, paste('mean=',round(mean(sample),2)), col='black')
+
+# QQ plot
+qqnorm(sample, col='orange', ann=FALSE, xaxt='n', yaxt='n', frame.plot=FALSE)
+title(xlab='normal quantiles', ylab='sample quantiles')
+axis(1, col='grey')
+axis(2, col='grey')
+qqline(sample, col='black')
+
+# Title
+mtext("Sample mean distribution",
+      col='#666666', line=-1, outer = TRUE, cex = 1.2, adj = 0)
+mtext("Sample size: 1",
+      col='grey', line=-2, outer=TRUE, adj=0)
+```
+
+# 3. Population: Uniform distribution
+
+```{r}
+# Generate an uniform population with size 10000
+set.seed(8000)
+y <- runif(10000)
+```
+
+```{r echo=FALSE}
+# Visualize the population distribution
+default_par()
+
+# Histogram
+hist(y, col='dodgerblue', ann=FALSE, xaxt='n', yaxt='n', border='white')
+title(xlab='population distribution')
+axis(1, col='grey')
+abline(v=mean(y), col='black', lty=2)
+text(x=.6, y=550, paste('mean=',round(mean(y),2)), col='black')
+```
+
+CLT applies well to uniformly distributed population with small sample size (e.g., 5)
+
+```{r}
+# Generate 500 samples with various sample sizes
+sample1 <- double()
+sample5 <- double()
+
+# sample size: 1
+set.seed(8001)
+for (i in 1:500) {
+  sample1 <- append(sample1, mean(sample(y,1)))
+}
+
+# sample size: 5
+set.seed(8001)
+for (i in 1:500) {
+  sample5 <- append(sample5, mean(sample(y,5)))
+}
+```
+
+```{r echo=FALSE, fig.asp=10/9}
+# Visualize the sample distribution
+default_par()
+par(mfrow=c(2,2))
+
+# sample size 1: histogram
+hist(sample1, col='grey', ann=FALSE, xaxt='n', yaxt='n', border='white')
+title(xlab='sample distribution')
+axis(1, col='grey')
+abline(v=mean(sample1), col='black', lty=2)
+text(x=.7, y=50, paste('mean=',round(mean(sample1),2)), col='black')
+
+# sample size 1: QQ plot
+qqnorm(sample1, col='grey', ann=FALSE, xaxt='n', yaxt='n', frame.plot=FALSE)
+title(xlab='normal quantiles', ylab='sample quantiles')
+axis(1, col='grey')
+axis(2, col='grey')
+qqline(sample1, col='black')
+
+# sample size 5: histogram
+hist(sample5, col='orange', ann=FALSE, xaxt='n', yaxt='n', border='white')
+title(xlab='sample distribution')
+axis(1, col='grey')
+abline(v=mean(sample5), col='black', lty=2)
+text(x=.7, y=50, paste('mean=',round(mean(sample5),2)), col='black')
+
+# sample size 5: QQ plot
+qqnorm(sample5, col='orange', ann=FALSE, xaxt='n', yaxt='n', frame.plot=FALSE)
+title(xlab='normal quantiles', ylab='sample quantiles')
+axis(1, col='grey')
+axis(2, col='grey')
+qqline(sample5, col='black')
+
+# Title
+mtext("Sample mean distributions",
+      col='#666666', line=-1.2, outer = TRUE, cex = 1.2, adj = 0)
+mtext("Sample size: 1, 5",
+      col='grey', line=-2.2, outer=TRUE, adj=0)
+```
+
+# 4. Population: Exponential distribution
+
+```{r}
+# Generate an exponential population with size 10000
+set.seed(8000)
+y <- rexp(10000)
+```
+
+```{r echo=FALSE}
+# Visualize the population distribution
+default_par()
+
+# Histogram
+hist(y, col='dodgerblue', ann=FALSE, xaxt='n', yaxt='n', border='white')
+title(xlab='population distribution')
+axis(1, col='grey')
+abline(v=mean(y), col='black', lty=2)
+text(x=2, y=1700, paste('mean=',round(mean(y),2)), col='black')
+```
+
+With an exponential distribution, CLT starts to apply with a sample size of ten. The distribution looks much nicer when we have a sample size of a hundred.
+
+```{r}
+# Generate 500 samples with various sample sizes
+sample5 <- double()
+sample10 <- double()
+sample100 <- double()
+
+# sample size: 5
+set.seed(8001)
+for (i in 1:500) {
+  sample5 <- append(sample5, mean(sample(y,5)))
+}
+
+# sample size: 10
+set.seed(8001)
+for (i in 1:500) {
+  sample10 <- append(sample10, mean(sample(y,10)))
+}
+
+# sample size: 100
+set.seed(8001)
+for (i in 1:500) {
+  sample100 <- append(sample100, mean(sample(y,100)))
+}
+```
+
+```{r echo=FALSE, fig.asp=3/2}
+# Visualize the sample distributions
+default_par()
+par(mfrow=c(3,2))
+
+# sample size 5: histogram
+hist(sample5, col='grey', ann=FALSE, xaxt='n', yaxt='n', border='white')
+title(xlab='sample distribution')
+axis(1, col='grey')
+abline(v=mean(sample5), col='black', lty=2)
+text(x=1.5, y=150, paste('mean=',round(mean(sample5),2)), col='black')
+
+# sample size 5: QQ plot
+qqnorm(sample5, col='grey', ann=FALSE, xaxt='n', yaxt='n', frame.plot=FALSE)
+title(xlab='normal quantiles', ylab='sample quantiles')
+axis(1, col='grey')
+axis(2, col='grey')
+qqline(sample5, col='black')
+
+# sample size 10: histogram
+hist(sample10, col='grey', ann=FALSE, xaxt='n', yaxt='n', border='white')
+title(xlab='sample distribution')
+axis(1, col='grey')
+abline(v=mean(sample10), col='black', lty=2)
+text(x=1.3, y=110, paste('mean=',round(mean(sample10),2)), col='black')
+
+# sample size 10: QQ plot
+qqnorm(sample10, col='grey', ann=FALSE, xaxt='n', yaxt='n', frame.plot=FALSE)
+title(xlab='normal quantiles', ylab='sample quantiles')
+axis(1, col='grey')
+axis(2, col='grey')
+qqline(sample10, col='black')
+
+# sample size 100: histogram
+hist(sample100, col='orange', ann=FALSE, xaxt='n', yaxt='n', border='white')
+title(xlab='sample distribution')
+axis(1, col='grey')
+abline(v=mean(sample100), col='black', lty=2)
+text(x=1.1, y=90, paste('mean=',round(mean(sample100),2)), col='black')
+
+# sample size 100: QQ plot
+qqnorm(sample100, col='orange', ann=FALSE, xaxt='n', yaxt='n', frame.plot=FALSE)
+title(xlab='normal quantiles', ylab='sample quantiles')
+axis(1, col='grey')
+axis(2, col='grey')
+qqline(sample100, col='black')
+
+# Title
+mtext("Sample mean distributions",
+      col='#666666', line=-1.3, outer = TRUE, cex = 1.2, adj = 0)
+mtext("Sample size: 5, 10, 100",
+      col='grey', line=-2.3, outer=TRUE, adj=0)
+```
+
+# 5. Population: Other distribution
+
+```{r}
+# Generate a population with size 10000
+set.seed(8000)
+y <- rbeta(10000, .5, .5)
+```
+
+```{r echo=FALSE}
+# Visualize the population distribution
+default_par()
+
+# Histogram
+hist(y, col='dodgerblue', ann=FALSE, xaxt='n', yaxt='n', border='white')
+title(xlab='population distribution')
+axis(1, col='grey')
+abline(v=mean(y), col='black', lty=2)
+text(x=.6, y=500, paste('mean=',round(mean(y),2)), col='black')
+```
+
+Surprisingly CLT applies really well to this beta distribution
+
+```{r}
+# Generate 500 samples with various sample sizes
+sample5 <- double()
+
+# sample size: 5
+set.seed(8001)
+for (i in 1:500) {
+  sample5 <- append(sample5, mean(sample(y,5)))
+}
+
+```
+
+```{r echo=FALSE}
+# Visualize the sample distributions
+default_par()
+par(mfrow=c(1,2))
+
+# sample size 5: histogram
+hist(sample5, col='orange', ann=FALSE, xaxt='n', yaxt='n', border='white')
+title(xlab='sample distribution')
+axis(1, col='grey')
+abline(v=mean(sample5), col='black', lty=2)
+text(x=.7, y=50, paste('mean=',round(mean(sample5),2)), col='black')
+
+# sample size 5: QQ plot
+qqnorm(sample5, col='orange', ann=FALSE, xaxt='n', yaxt='n', frame.plot=FALSE)
+title(xlab='normal quantiles', ylab='sample quantiles')
+axis(1, col='grey')
+axis(2, col='grey')
+qqline(sample5, col='black')
+
+# Title
+mtext("Sample mean distribution",
+      col='#666666', line=-1, outer = TRUE, cex = 1.2, adj = 0)
+mtext("Sample size: 5",
+      col='grey', line=-2, outer=TRUE, adj=0)
+```
