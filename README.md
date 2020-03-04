@@ -4,3 +4,4 @@
   * Statistics concept
   * Continuous distributions 
   * R base plot
+* [Using AWS Wrangler in Glue where Internet is not Allowed](awswrangler_glue.md)
