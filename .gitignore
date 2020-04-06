@@ -1,3 +1,6 @@
 # MAC
 .DS_store
 .Rhistory
+
+# Public dataset
+NWU/datasets
