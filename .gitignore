@@ -4,7 +4,6 @@
 
 # Jupyter
 .ipynb_checkpoints
-*/.ipynb_checkpoints/*
 
 # Public dataset
 NWU/datasets
