@@ -239,7 +239,7 @@ Notes:
 We can create a read replica with a Aurora cluster, by clicking **Create Aurora read replica**
 ![Aurora read replica](images/rds-mysql/rds-aurorarr.png)
 
-# Working with snapshots
+# 5. Working with snapshots
 
 ## Copy across regions
 
@@ -255,7 +255,7 @@ We can export the whole database, a schema or schema.table to Parquet files in S
 
 ![RDS export snapshot](images/rds-mysql/rds-export-snapshot.png)
 
-# Advanced topics: Architecture with Aurora
+# 6. Advanced topics: Architecture with Aurora
 
 * Cloud native storage - [blog](https://aws.amazon.com/blogs/database/introducing-the-aurora-storage-engine/)
 * High availability with (Aurora) read replica - [doc](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html)
