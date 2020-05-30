@@ -5,7 +5,7 @@
 # Machine learning
 * [PCA-RF - MNIST dataset](NWU/Studying_PCA-RF_classifier_with_the_MNIST_dataset.ipynb)
   * Dimensionality reduction and its effect on classification
-* [MLP - MNIST dataset](NWU/Studying_MLP_architectures_with_the_MNIST_dataset)
+* [MLP - MNIST dataset](NWU/Studying_MLP_architectures_with_the_MNIST_dataset.ipynb)
   * MLP design (# of neurons and hidden layers) with a good model performance and short training time
 
 # Statistics concept
