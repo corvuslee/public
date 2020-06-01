@@ -61,6 +61,19 @@ mysql> select version();
 
 ```
 
+### Using SSL/TLS to encrypt the connection
+
+Download the certificate bundle that contains both the intermediate and root certificates from https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
+
+```
+wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
+```
+
+Test the connectivity with SSL/TLS required
+```
+mysql -h database-2.clp45lfuan0s.ap-northeast-1.rds.amazonaws.com -u admin -p --ssl-ca=/home/ec2-user/environment/rds-combined-ca-bundle.pem --ssl-mode=REQUIRED
+```
+
 ## Loading sample data
 
 > Reference: https://github.com/datacharmer/test_db
