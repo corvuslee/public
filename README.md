@@ -3,6 +3,9 @@
 * [Using AWS Wrangler in Glue where Internet is not allowed](awswrangler_glue.md)
 
 # Machine learning
+* [Regression methods - predict housing prices](NWU/Studying_regression_with_linear_and_ensembling_models.ipynb)
+  * Linear models: Ridge, Lasso, ElasticNet
+  * Ensembling: Random forest, GBRT
 * [PCA-RF - MNIST dataset](NWU/Studying_PCA-RF_classifier_with_the_MNIST_dataset.ipynb)
   * Dimensionality reduction and its effect on classification
 * [MLP - MNIST dataset](NWU/Studying_MLP_architectures_with_the_MNIST_dataset.ipynb)
@@ -15,5 +18,5 @@
   * Pretrained word vectors - GloVe.6B, GloVe.Twitter
 
 # Others
-* [Central Limit Theorem](R/central_limit_theorem.md)
+* [Central Limit Theorem in R](R/central_limit_theorem.md)
 * [Linear programming with Python](https://www.linkedin.com/pulse/linear-programming-python-siu-chung-corvus-lee/)
