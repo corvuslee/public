@@ -10,7 +10,10 @@
 * [CNN - Dogs vs. Cats (25000 images)](NWU/Studying_CNN_architectures_with_the_dogs_vs_cats_dataset.ipynb)
   * Importance of image augmentation
   * Transfer learning from Xception
+* [RNN - Disaster tweets dataset](NWU/Studying_architectures_for_NLP_with_disaster_tweets_dataset.ipynb)
+  * Pretrained sentence encoder - nnlm-en-dim50
+  * Pretrained word vectors - GloVe.6B, GloVe.Twitter
 
-# Statistics concept
+# Others
 * [Central Limit Theorem](R/central_limit_theorem.md)
-
+* [Linear programming with Python](https://www.linkedin.com/pulse/linear-programming-python-siu-chung-corvus-lee/)
