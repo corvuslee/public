@@ -4,6 +4,7 @@
 
 # Machine learning
 * [Regression methods - predict housing prices](NWU/Studying_regression_with_linear_and_ensembling_models.ipynb)
+  * Data preprocessing: scikit-learn pipeline, custom transformer
   * Linear models: Ridge, Lasso, ElasticNet
   * Ensembling: Random forest, GBRT
 * [PCA-RF - MNIST dataset](NWU/Studying_PCA-RF_classifier_with_the_MNIST_dataset.ipynb)

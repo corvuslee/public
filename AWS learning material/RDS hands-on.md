@@ -1,4 +1,4 @@
-# RDS Workshop (Level 300)
+# RDS hands-on (L200)
 
 # 1. Setup
 
@@ -6,12 +6,14 @@
 
 * Engine options
     * MySQL Community > Version 5.7.22
+    * or Oracle EE > 12.1.0.2.v19
 * Template
     * Dev/Test
 * DB instance size
     * Burstable classes > db.t3.medium
-* Aditional configuration
-    * Enable log exports (audit, error, general, slow query)
+* Additional configuration
+    * Enable all log exports (audit, error, general, slow query)
+    * or alert, audit, listener, trace log
 
 ![provisioning RDS](images/rds-mysql/rds-provision.png)
 ![provisioning RDS](images/rds-mysql/rds-provision2.png)
@@ -20,11 +22,11 @@
 
 * Storage IOPS & autoscaling - [doc](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#Concepts.Storage.GeneralSSD)
 * Multi-AZ - [blog](https://aws.amazon.com/blogs/database/amazon-rds-under-the-hood-multi-az/)
-* Supported Oracle version - [doc](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Oracle.html)
+* Understanding Oracle release schedule - [Oracle support](https://support.oracle.com/knowledge/Oracle%20Database%20Products/742060_1.html)
 
 ## Provisioning Cloud9
 
-Cloud9 is a cloud IDE for writing, running, and debugging code. We will need a **t3.small** instance (not the default!) for a small scale load test.
+Cloud9 is a cloud IDE for writing, running, and debugging code. We will need a **t3.small** instance for a small scale load test.
 
 ![provisioning Cloud9](images/rds-mysql/cloud9-provision.png)
 ![provisioning Cloud9](images/rds-mysql/cloud9-provision2.png)
@@ -33,9 +35,20 @@ In just a minute, we now have a cloud based development environment with AWS CLI
 
 ![Cloud9](images/rds-mysql/cloud9-final.png)
 
+(Oracle only) Install Oracle instant client (basic package, RPM) from the [Oracle website](https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html).
+
+```
+wget https://download.oracle.com/otn_software/linux/instantclient/19600/oracle-instantclient19.6-basic-19.6.0.0.0-1.x86_64.rpm
+
+wget https://download.oracle.com/otn_software/linux/instantclient/19600/oracle-instantclient19.6-sqlplus-19.6.0.0.0-1.x86_64.rpm
+```
+```
+sudo yum install oracle-instantclient19.6-sqlplus-19.6.0.0.0-1.x86_64.rpm oracle-instantclient19.6-basic-19.6.0.0.0-1.x86_64.rpm
+```
+
 ## Connect from Cloud9
 
-Lodate the RDS MySQL endpoint from the console
+Lodate the RDS endpoint from the console
 ![RDS endpoint](images/rds-mysql/rds-endpoint.png)
 
 Locate the inbound security group
@@ -44,7 +57,7 @@ Locate the inbound security group
 Edit the inbound rules
 ![RDS security group](images/rds-mysql/rds-sg2.png)
 
-Add a rule to allow MySQL (TCP 3306) access from the cloud9 security group
+Add a rule to allow MySQL (TCP 3306) or Oracle (TCP 1521) access from the cloud9 security group
 ![RDS security group](images/rds-mysql/rds-sg3.png)
 
 Test the connectivity from the Cloud9 client
@@ -58,7 +71,15 @@ mysql> select version();
 | 5.7.22-log |
 +------------+
 1 row in set (0.01 sec)
+```
+```
+$ sqlplus corvus@oracle-1.cduf5ueot2nx.ap-east-1.rds.amazonaws.com/ORCL
 
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
+
+SQL> select * from v$version;  
 ```
 
 ### Using SSL/TLS to encrypt the connection
@@ -73,6 +94,7 @@ Test the connectivity with SSL/TLS required
 ```
 mysql -h database-2.clp45lfuan0s.ap-northeast-1.rds.amazonaws.com -u admin -p --ssl-ca=/home/ec2-user/environment/rds-combined-ca-bundle.pem --ssl-mode=REQUIRED
 ```
+
 
 ## Loading sample data
 
@@ -191,7 +213,7 @@ Check the list of available metrics
 ![RDS enhanced monitoring](images/rds-mysql/rds-metrics.png)
 
 ## Performance insight
-> Illustrate your database's performance and help you analyze any issues that affedt it.
+> Illustrate your database's performance and help you analyze any issues that affect it.
 
 Generate some loading to the database using `mysqlslap`
 ```
