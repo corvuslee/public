@@ -1,5 +1,30 @@
 # RDS MySQL hands-on (L200)
 
+- [1. Setup](#1-setup)
+  - [Provisioning MySQL](#provisioning-mysql)
+    - [Advanced discussions](#advanced-discussions)
+  - [Provisioning Cloud9](#provisioning-cloud9)
+  - [Connect from Cloud9](#connect-from-cloud9)
+    - [Using SSL/TLS to encrypt the connection](#using-ssltls-to-encrypt-the-connection)
+  - [Loading sample data](#loading-sample-data)
+    - [Clone the test_db github repository](#clone-the-test_db-github-repository)
+    - [Populate the sample database](#populate-the-sample-database)
+    - [Verify the installation](#verify-the-installation)
+- [2. Monitoring](#2-monitoring)
+  - [CloudWatch Metrics](#cloudwatch-metrics)
+  - [Enhanced monitoring](#enhanced-monitoring)
+  - [Performance insight](#performance-insight)
+- [3. Upgrade](#3-upgrade)
+    - [Advanced discussion](#advanced-discussion)
+- [4. Availability](#4-availability)
+  - [PITR](#pitr)
+  - [Read Replica](#read-replica)
+  - [Aurora Read Replica](#aurora-read-replica)
+- [5. Working with snapshots](#5-working-with-snapshots)
+  - [Copy across regions](#copy-across-regions)
+  - [Export snapshots to S3](#export-snapshots-to-s3)
+- [6. Advanced topics: Architecture with Aurora](#6-advanced-topics-architecture-with-aurora)
+
 # 1. Setup
 
 ## Provisioning MySQL
