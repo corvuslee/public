@@ -1,4 +1,4 @@
-# RDS hands-on (L200)
+# RDS MySQL hands-on (L200)
 
 # 1. Setup
 
@@ -6,14 +6,12 @@
 
 * Engine options
     * MySQL Community > Version 5.7.22
-    * or Oracle EE > 12.1.0.2.v19
 * Template
     * Dev/Test
 * DB instance size
     * Burstable classes > db.t3.medium
 * Additional configuration
     * Enable all log exports (audit, error, general, slow query)
-    * or alert, audit, listener, trace log
 
 ![provisioning RDS](images/rds-mysql/rds-provision.png)
 ![provisioning RDS](images/rds-mysql/rds-provision2.png)
@@ -22,7 +20,7 @@
 
 * Storage IOPS & autoscaling - [doc](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#Concepts.Storage.GeneralSSD)
 * Multi-AZ - [blog](https://aws.amazon.com/blogs/database/amazon-rds-under-the-hood-multi-az/)
-* Understanding Oracle release schedule - [Oracle support](https://support.oracle.com/knowledge/Oracle%20Database%20Products/742060_1.html)
+
 
 ## Provisioning Cloud9
 
@@ -35,16 +33,6 @@ In just a minute, we now have a cloud based development environment with AWS CLI
 
 ![Cloud9](images/rds-mysql/cloud9-final.png)
 
-(Oracle only) Install Oracle instant client (basic package, RPM) from the [Oracle website](https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html).
-
-```
-wget https://download.oracle.com/otn_software/linux/instantclient/19600/oracle-instantclient19.6-basic-19.6.0.0.0-1.x86_64.rpm
-
-wget https://download.oracle.com/otn_software/linux/instantclient/19600/oracle-instantclient19.6-sqlplus-19.6.0.0.0-1.x86_64.rpm
-```
-```
-sudo yum install oracle-instantclient19.6-sqlplus-19.6.0.0.0-1.x86_64.rpm oracle-instantclient19.6-basic-19.6.0.0.0-1.x86_64.rpm
-```
 
 ## Connect from Cloud9
 
@@ -57,7 +45,7 @@ Locate the inbound security group
 Edit the inbound rules
 ![RDS security group](images/rds-mysql/rds-sg2.png)
 
-Add a rule to allow MySQL (TCP 3306) or Oracle (TCP 1521) access from the cloud9 security group
+Add a rule to allow MySQL (TCP 3306) access from the cloud9 security group
 ![RDS security group](images/rds-mysql/rds-sg3.png)
 
 Test the connectivity from the Cloud9 client
@@ -72,15 +60,7 @@ mysql> select version();
 +------------+
 1 row in set (0.01 sec)
 ```
-```
-$ sqlplus corvus@oracle-1.cduf5ueot2nx.ap-east-1.rds.amazonaws.com/ORCL
 
-Connected to:
-Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
-With the Partitioning, OLAP, Advanced Analytics and Real Application Testing options
-
-SQL> select * from v$version;  
-```
 
 ### Using SSL/TLS to encrypt the connection
 
@@ -196,7 +176,7 @@ Enter password:
 # 2. Monitoring
 
 ## CloudWatch Metrics
-Browse to the **Monitoring**`** tab and check
+Browse to the **Monitoring** tab and check
 * CPU/RAM
 * Disk space
 * Network traffic
@@ -260,7 +240,7 @@ From the console, select **Restore to point in time**
 
 Updates made to the source DB instance are asynchronously copied to the read replica. We can make use of this to scale out elastically for read-heavy database workloads.
 
-From the console, select ** Create read replica**
+From the console, select **Create read replica**
 ![RDS read replica](images/rds-mysql/rds-rr.png)
 
 Notes:
