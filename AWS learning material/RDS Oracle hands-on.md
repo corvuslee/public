@@ -42,6 +42,8 @@
 
 ### Advanced discussions
 
+* Override number of CPU cores (BYOL only) - [doc](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html#USER_ConfigureProcessor)
+  ![change core](images/rds-oracle/oracle-changecore.png)
 * Storage IOPS & autoscaling - [doc](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#Concepts.Storage.GeneralSSD)
 * Multi-AZ - [blog](https://aws.amazon.com/blogs/database/amazon-rds-under-the-hood-multi-az/)
 * Understanding Oracle release schedule - [Oracle support](https://support.oracle.com/knowledge/Oracle%20Database%20Products/742060_1.html)
