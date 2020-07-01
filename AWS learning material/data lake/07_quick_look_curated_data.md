@@ -3,7 +3,8 @@ In this task you will utilize Amazon Athena to take a quick look at the curated 
 ![athena](images/04_quicklook.png)
 
 1. Open the [Amazon Athena Console](https://console.aws.amazon.com/athena/home)
-2. Select `reviews` from the database list![Select database in Athena](images/athena-database2.png)
+2. Select `reviews` from the database list
+  ![Select database in Athena](images/athena-database2.png)
 3. In the **Query Editor** try the following statements and note the response times:
 
 Total number of review counts
