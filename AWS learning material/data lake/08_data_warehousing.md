@@ -51,25 +51,41 @@ First we create an external schema for the database in data lake, and the tables
     ```
 3. Verify that we can see the `spectrum` schema and `parquet` table ![Redshift schema](images/redshift-schema.png)
 
-# Populate a sample dimension table in Redshift
+# Populate a sample dimension table (2M rows) in Redshift
 
 ```sql
-CREATE TABLE public.customers
+CREATE TABLE customer
 (
-    customer_id  char(8),
-    customer_segment  char(2)
-);
+  c_customer_sk int4 not null ,                 
+  c_customer_id char(16) not null ,             
+  c_current_cdemo_sk int4 ,   
+  c_current_hdemo_sk int4 ,   
+  c_current_addr_sk int4 ,    
+  c_first_shipto_date_sk int4 ,                 
+  c_first_sales_date_sk int4 ,
+  c_salutation char(10) ,     
+  c_first_name char(20) ,     
+  c_last_name char(30) ,      
+  c_preferred_cust_flag char(1) ,               
+  c_birth_day int4 ,          
+  c_birth_month int4 ,        
+  c_birth_year int4 ,         
+  c_birth_country varchar(20) ,                 
+  c_login char(13) ,          
+  c_email_address char(50) ,  
+  c_last_review_date_sk int4 ,
+  primary key (c_customer_sk)
+) distkey(c_customer_sk);
 ```
 
 ```sql
-INSERT INTO public.customers
-VALUES (14928648, 18),
-    (12972937, 18),
-    (51032648, 20);
+COPY customer FROM 's3://redshift-downloads/TPC-DS/100GB/customer/'
+iam_role 'arn:aws:iam::<account_ID>:role/spectrum'
+gzip delimiter '|' EMPTYASNULL region 'us-east-1' ;
 ```
 
 ```sql
-ANALYZE public.customers;
+ANALYZE customer;
 ```
 
 # Join the event data with customer dimension
@@ -78,24 +94,24 @@ Notice how we can do a join between tables in data lake and within Redshift in a
 
 ```sql
 SELECT
-  a.customer_id,
-  customer_segment,
+  customer_id,
+  c_birth_year,
   COUNT(*) total_reviews,
   MIN(star_rating) min_star,
   AVG(star_rating) avg_star,
   MAX(star_rating) max_star
 FROM spectrum.parquet a
-  LEFT JOIN public.customers b
-  ON a.customer_id = b.customer_id
-WHERE a.customer_id IN (14928648, 12972937, 51032648)
+  INNER JOIN customer b
+  ON customer_id = c_customer_sk
+WHERE customer_id IN (1688184, 1675439, 1986825, 1688894)
 GROUP BY
-  a.customer_id,
-  b.customer_segment
+  customer_id,
+  c_birth_year
 ```
 
 ![Redshift query result](images/redshift-queryresult.png)
 
-Notice in the explain plan how most of the works have been pushed down to the S3 layer
+Click **Execution** and notice how most of the works have been pushed down to the S3 layer
 
 ![Redshift explain plan](images/redshift-explain.png)
 
