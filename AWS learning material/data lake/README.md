@@ -18,12 +18,23 @@ Duration:
 
 * Sign in to the AWS Management Console using the provided credentials
 * Make sure you are using the `us-east-1` region for the whole workshop
-* Create two S3 buckets
+
+## Create S3 buckets
+
 ![main page](images/main-page.png)
-    * Click **Create bucket**
-      * Bucket name: *s3://athena.out.yourname*
-      * Region: *us-east-1*
-    * Create another bucket
-      * Bucket name: *s3://data.set.yourname*
-      * Region: *us-east-1*
-    ![create S3 bucket](images/s3_createbucket.png)
+
+1. Click **Create bucket**
+   * Bucket name: *s3://athena.out.yourname*
+   * Region: *us-east-1*
+2. Create another bucket
+   * Bucket name: *s3://data.set.yourname*
+   * Region: *us-east-1*
+  ![create S3 bucket](images/s3_createbucket.png)
+
+## Create EC2 keypair
+
+1. Go to the [EC2 console](https://console.aws.amazon.com/ec2/v2/home) 
+2. Under **Network & Security**, click **Key Pairs**
+3. Click **Create key pair**
+   * Name: *yourname*
+   * File format: *pem* 
