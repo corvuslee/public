@@ -22,7 +22,7 @@ In this task you will
 1. Open the [Amazon EMR Console](https://console.aws.amazon.com/elasticmapreduce/home?)
 2. Click **Create cluster**
 3. Click **Go to advanced options**
-4. Select the latest (stable) EMR release
+4. Select the default EMR release
    * Checkbox: *Hadoop, Ganglia, Spark, Livy*
 5. Use Glue Data Catalog for Spark table metadata: *yes*
 6. Edit the software settings with the following:
@@ -42,12 +42,13 @@ In this task you will
 
 ## Hardware configuration
 
-1. Accept the defaults, and we will have a cluster made of m5.xlarge instances
-2. Enable **cluster scaling** (EMR-managed, 2-10 nodes)
-3. Click **Next**
-   ![EMR scaling](images/emr-scaling.png)
+1. Modify the cluster nodes and instances
+   * 1 master node (r5.xlarge)
+   * 10 core nodes (r5.xlarge)
+   * 0 task nodes
+2. Click **Next**
 
-> Notice the **spot instance** features for further cost optimization
+> Notice the **spot instance** and **cluster scaling** features for further cost optimization
 
 ## General options
 1. Cluster name: *reviews*
@@ -109,5 +110,5 @@ In this task you will
 # Author a data processing job
 
 1. From the notebook instance, open **Jupyter**
-2. Upload the notebook: [05a_Amazon Customer Reviews - processing.ipynb](05a_Amazon%20Customer%20Reviews%20-%20processing.ipynb)
+2. Upload the notebook: [05a_Amazon Customer Reviews - processing](05a_Amazon%20Customer%20Reviews%20-%20processing.ipynb)
 3. Follow the instructions within
