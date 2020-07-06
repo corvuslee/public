@@ -110,5 +110,5 @@ In this task you will
 # Author a data processing job
 
 1. From the notebook instance, open **Jupyter**
-2. Upload the notebook: [05a_Amazon Customer Reviews - processing](05a_Amazon%20Customer%20Reviews%20-%20processing.ipynb)
+2. Upload the notebook: [05a_processing_emr_notebook.ipynb](05a_processing_emr_notebook.ipynb)
 3. Follow the instructions within
