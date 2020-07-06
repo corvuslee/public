@@ -55,7 +55,7 @@ In this task you will
 2. Click **Next**
 
 ## Security options
-1. Provide an EC2 key pair (optional) so we can connect to the master node via SSH
+1. Provide an EC2 key pair (generated in [README.md](README.md)) so we can connect to the master node via SSH
 2. Click **Create cluster**
 3. Wait a minute and copy the `master public DNS` (e.g., ec2-3-94-120-86.compute-1.amazonaws.com)
 
