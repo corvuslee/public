@@ -174,10 +174,10 @@ region 'us-west-2' lzop delimiter '|' ;
 
 ### Advanced discussion
 While waiting for the data load, discuss the Amazon Redshift data modelling:
-* row-store vs. column store
-* columnar compression
-* data distribution
-* sort key
+* row-store vs. column store - [doc](https://docs.aws.amazon.com/redshift/latest/dg/c_columnar_storage_disk_mem_mgmnt.html)
+* columnar compression - [doc](https://docs.aws.amazon.com/redshift/latest/dg/c_Compression_encodings.html)
+* data distribution - [doc](https://docs.aws.amazon.com/redshift/latest/dg/t_Distributing_data.html)
+* sort key - [doc](https://docs.aws.amazon.com/redshift/latest/dg/t_Sorting_data.html)
 
 ## Table maintenance
 
