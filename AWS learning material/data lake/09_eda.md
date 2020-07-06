@@ -14,6 +14,15 @@ In this task you will get started with Amazon SageMaker, explore a Jupyter noteb
    ![sagemaker studio provisioning](images/sagemaker-studio-provisioning.png)
 4. Open Studio when the provisioning process has completed
 
+## Additional IAM permissions
+1. Go to the [IAM console](https://console.aws.amazon.com/iam)
+2. Click **Roles**
+3. Search for *AmazonSageMaker-ExecutionRole-xxxx*
+4. Click **Attach policies**
+5. Select *AmazonAthenaFullAccess*
+6. Click **Attach policy**
+   ![sagemaker-athena-policy](images/sagemaker-athena-policy.png)
+
 # Data exploration
 
 1. Upload the notebook: [09a_Amazon Customer Reviews - EDA.ipynb](09a_Amazon%20Customer%20Reviews%20-%20EDA.ipynb)
