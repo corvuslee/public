@@ -8,7 +8,7 @@ In this task you will utilize Amazon Athena to take a quick look at the raw data
    2. Encrypt query results: *yes, SSE-S3*
    3. Autocomplete: *yes*
 3. Select `reviews` from the database list
-  ![Select database in Athena](images/athena-database.png)
+![Select database in Athena](images/athena-database.png)
 4. In the **Query Editor** try the following statements and note the response times:
 
 Total number of review counts
@@ -21,6 +21,7 @@ FROM tsv;
 Review counts and average star rating per product category
 ```sql
 SELECT
+  product_category,
   COUNT(*) review_count,
   AVG(CAST(star_rating AS real)) avg_star
 FROM tsv
