@@ -43,8 +43,8 @@ In this task you will
 ## Hardware configuration
 
 1. Modify the cluster nodes and instances
-   * 1 master node (r5.xlarge)
-   * 10 core nodes (r5.xlarge)
+   * 1 master node (m5.xlarge)
+   * 5 core nodes (r5.2xlarge)
    * 0 task nodes
 2. Click **Next**
 
