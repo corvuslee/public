@@ -17,6 +17,7 @@ FROM parquet;
 Review counts and average star rating per product category
 ```sql
 SELECT
+  product_category,
   COUNT(*) review_count,
   AVG(CAST(star_rating AS real)) avg_star
 FROM parquet
