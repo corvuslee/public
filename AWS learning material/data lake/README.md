@@ -10,7 +10,7 @@ In this lab, you will:
 * **Build and deploy a machine learning model** to predict the product star rating using Amazon SageMaker Autopilot
 
 Duration:
-* 1.5 hour
+* 2.5 hour
 
 # Preparation
 
