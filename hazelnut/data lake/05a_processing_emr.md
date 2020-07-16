@@ -70,7 +70,7 @@ In this task you will
 4. Modify the `EMR_MASTER_IP` and paste into the script
     ```bash
     # PARAMETERS
-    EMR_MASTER_IP=your.emr.master.ip
+    EMR_MASTER_IP=emr.master.ip.or.dns
 
 
     cd /home/ec2-user/.sparkmagic
