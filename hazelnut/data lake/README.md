@@ -33,8 +33,6 @@ Duration:
 
 ## Create EC2 keypair
 
-> If you are using provided credentials, download the private key (*.pem) and skip this section.
-
 1. Go to the [EC2 console](https://console.aws.amazon.com/ec2/v2/home) 
 2. Under **Network & Security**, click **Key Pairs**
 3. Click **Create key pair**
