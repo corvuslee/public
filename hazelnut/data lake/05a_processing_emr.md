@@ -95,6 +95,7 @@ In this task you will
    2. Notebook instance type: ml.t2.medium (default)
    3. Elastic Inference: None (default)
    4. Lifecycle configuration: *emr*
+![lifecycle config](images/sagemaker-lifecycle.png)
 5. Permissions and encryption:
    1. Create a new IAM role
       1. Grant access to any S3 bucket![IAM role](images/sagemaker-iam.png)
