@@ -24,9 +24,6 @@ Duration:
 ![main page](images/main-page.png)
 
 1. Click **Create bucket**
-   * Bucket name: *s3://athena.out.yourname*
-   * Region: *us-east-1*
-2. Create another bucket
    * Bucket name: *s3://data.set.yourname*
    * Region: *us-east-1*
   ![create S3 bucket](images/s3_createbucket.png)

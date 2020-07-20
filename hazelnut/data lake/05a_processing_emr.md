@@ -103,7 +103,7 @@ In this task you will
    3. No custom encryption (default)
 6. Network:
    1. Select the default VPC
-   2. Select the same subnet as the EMR cluster
+   2. Select the **same subnet** as the EMR cluster
    3. Select the `ElasticMapReduce-master` security group
    4. Enable direct Internet access (default)![network](images/sagemaker-network.png)
 7. Create notebook instance
