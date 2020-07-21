@@ -1,9 +1,9 @@
 # AWS
 ## Main
-* [End to end data lake experience](hazelnut/data%20lake/README.md)
+* [End to end data lake experience](hazelnut/data%20lake/)
 * [RDS 30min tutorial & demo](https://pages.awscloud.com/hk-rds.html)
 * [RDS getting started](hazelnut/rds/)
-* [Redshift getting started](hazelnut/redshift/README.md)
+* [Redshift getting started](hazelnut/redshift/)
 
 ## Misc
 * [Connecting Tableau Desktop to Amazon Athena](tableau_athena.md)
