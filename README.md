@@ -1,4 +1,11 @@
-# AWS-related
+# AWS
+## Main
+* [End to end data lake experience](hazelnut/data%20lake/README.md)
+* [RDS 30min tutorial & demo](https://pages.awscloud.com/hk-rds.html)
+* [RDS getting started](hazelnut/rds/)
+* [Redshift getting started](hazelnut/redshift/README.md)
+
+## Misc
 * [Connecting Tableau Desktop to Amazon Athena](tableau_athena.md)
 * [Using AWS Wrangler in Glue where Internet is not allowed](awswrangler_glue.md)
 
