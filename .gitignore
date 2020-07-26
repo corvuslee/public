@@ -5,5 +5,8 @@
 # Jupyter
 .ipynb_checkpoints
 
+# VS Code
+.vscode
+
 # Public dataset
 NWU/datasets
