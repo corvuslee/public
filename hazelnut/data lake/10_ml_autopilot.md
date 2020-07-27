@@ -33,14 +33,14 @@ In this task you will explore Amazon SageMaker Autopilot, which will automatical
 1. Click **Open data exploration notebook**
 2. Review the content
 
-> Optionally upload and view the prepared notebook [here](10.1_SageMakerAutopilotDataExplorationNotebook.ipynb)
+> Optionally upload and view the prepared notebook [here](10a_SageMakerAutopilotDataExplorationNotebook.ipynb)
 
 ## Candidate generation
 
 1. Click **Open candidate generation notebook**
 2. The notebook is in read-only mode, click **Import notebook** in the top right corner if you want to modify or run the content
 
-> Optionally upload and view the prepared notebook [here](10.2_SageMakerAutopilotCandidateDefinitionNotebook.ipynb)
+> Optionally upload and view the prepared notebook [here](10b_SageMakerAutopilotCandidateDefinitionNotebook.ipynb)
 
 SageMaker Autopilot will create 9 model candidates. Then utilize Bayesian strategy to tune the hyperparameters of each models (max. 250 jobs).
 
