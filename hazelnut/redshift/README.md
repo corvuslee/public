@@ -1,5 +1,16 @@
 # Overview
 
+Amazon Redshift is not only a data warehouse, but also tightly integrated with data lake (Amazon S3) and operational databases. This allows use cases like:
+
+## Explore new insights by joining business data with event data
+With Redshfit Spectrum, you can now experiment and explore new insights by joining business data (e.g., revenue) with event data (e.g., clickstream), identifying patterns like customer behaviors prior to making purchase.
+
+## Unload historical data to data lake
+With Redshift Spectrum, you can also unload historical data (e.g., after one year) to data lake to make the data warehouse leaner. Additionally, you may create a late binding view across both historical data and current data.
+
+## Live data query
+With Redshift Federated Query, you can now query live data residing in Amazon Aurora PostgreSQL and Amazon RDS for PostgreSQL from Amazon Redshift. Additionally, you can also simplify the ETL pipeline with familiar UPSERT patterns, without relying on other tools.
+
 ![00_overview](images/00_overview.png)
 
 In this lab, you will:
