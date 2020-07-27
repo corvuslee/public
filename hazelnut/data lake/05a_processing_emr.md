@@ -80,4 +80,5 @@ noo* Create an EMR notebook and connect to the cluster
 1. Click **Open in Jupyter** or **JupyterLab**
 2. Open the page [05a_processing_emr_notebook.ipynb](05a_processing_emr_notebook.ipynb), download the ipynb file
 3. Upload and open the notebook file
-4. Follow the instructions within
+4. Change the kernel to **PySpark**
+5. Follow the instructions within
