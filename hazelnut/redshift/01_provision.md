@@ -33,6 +33,8 @@ In this task you will provision an Amazon Redshift cluster, and load sample data
 
 # Data loading
 
+> For better experience, we may use a SQL client tools, such as SQL Workbench/J, to write and run SQL statements - [doc](https://docs.aws.amazon.com/redshift/latest/mgmt/connecting-using-workbench.html)
+
 ## Create tables
 
 1. Open the **query editor**
@@ -173,16 +175,17 @@ region 'us-west-2' lzop delimiter '|' ;
 > It will take around 20 minutes to load the tables
 
 ### Advanced discussion
-While waiting for the data load, discuss the Amazon Redshift data modelling:
+While waiting for the data load, discuss some key concepts of Amazon Redshift:
 * row-store vs. column store - [doc](https://docs.aws.amazon.com/redshift/latest/dg/c_columnar_storage_disk_mem_mgmnt.html)
-* columnar compression - [doc](https://docs.aws.amazon.com/redshift/latest/dg/c_Compression_encodings.html)
 * data distribution - [doc](https://docs.aws.amazon.com/redshift/latest/dg/t_Distributing_data.html)
 * sort key - [doc](https://docs.aws.amazon.com/redshift/latest/dg/t_Sorting_data.html)
 
 ## Table maintenance
 
-While the table vacuum has been automated by Amazon Redshift, it is a good practice to manually perform the operation after loading large amount of data.
+While the statistics update and table vacuum have been automated by Amazon Redshift, it is a good practice to manually perform the operation after loading large amount of data.
 
 ```
+ANALYZE;
+
 VACUUM;
 ```

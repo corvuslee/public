@@ -4,7 +4,7 @@ In this task you will explore the Amazon Redshift console and take a look at som
 
 1. Click **Actions**, then **Resize**
 2. With **Elastic resize**, we can
-   * Change the number of nodes (scale-out)
+   * Change the number of nodes (scale out/in)
    * Or change the node type and number of nodes
    ![elastic-resize](images/elastic-resize.png)
    > Note that this can be scheduled as a recurring event
