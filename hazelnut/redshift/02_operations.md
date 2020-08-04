@@ -1,5 +1,9 @@
 In this task you will explore the Amazon Redshift console and take a look at some common operations.
 
+- [Scaling](#scaling)
+- [Backup/restore](#backuprestore)
+- [Monitoring](#monitoring)
+
 # Scaling
 
 1. Click **Actions**, then **Resize**

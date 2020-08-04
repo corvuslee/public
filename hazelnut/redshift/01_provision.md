@@ -1,5 +1,12 @@
 In this task you will provision an Amazon Redshift cluster, and load sample data into a star schema.
 
+- [Provisioning](#provisioning)
+- [Data loading](#data-loading)
+  - [Create tables](#create-tables)
+  - [Data loading](#data-loading-1)
+    - [Advanced discussion](#advanced-discussion)
+  - [Table maintenance](#table-maintenance)
+
 # Provisioning
 
 1. Create a **service role** in the [IAM Console](https://console.aws.amazon.com/iam/home)
