@@ -35,6 +35,7 @@ In this task you will provision an Amazon Redshift cluster, and load sample data
         8.  Expand **Cluster permissions**
             1.  Choose an IAM role: *spectrum*
             2.  Click **Add IAM role**
+![assign_iam_role](images/assign_iam_role.png)
     2.  Click **Create cluster**
 3.  Click **Clusters** and wait until Status becomes *Available*
 

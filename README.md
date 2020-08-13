@@ -1,7 +1,7 @@
 # Learning AWS
 ## Lab
 * [End to end data lake experience](hazelnut/data%20lake/)
-* [Glue getting started](hazenut/glue/)
+* [Glue getting started](hazelnut/glue/)
 * [RDS getting started](hazelnut/rds/)
 * [Redshift getting started](hazelnut/redshift/)
 
