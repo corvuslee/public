@@ -18,11 +18,13 @@ In this task you will provision an Amazon Redshift cluster, and load sample data
    4.  Select (checker) the following policies:
        1.  *AmazonS3FullAccess*
        2.  *AWSGlueConsoleFullAccess*
+![iam-s3](images/iam-s3.png)
+![iam-glue](images/iam-glue.png)
    5.  Click **Next: Tags** and leave the tags blank
    6.  Click **Next: Review** and input the following:
        1.  Role name: *spectrum*
        2.  Role description: *Allows Redshift Spectrum to use Glue catalog and S3*
-       3.  Click **Create role**![iam-spectrum](images/iam-spectrum.png)
+       3.  Click **Create role**
 2.  Provision a data warehouse cluster in the [Redshift Console](https://console.aws.amazon.com/redshiftv2/)
     1.  Click **Create cluster**
         1.  Cluster identifier: *redshift-cluster-1* (default)
@@ -34,7 +36,7 @@ In this task you will provision an Amazon Redshift cluster, and load sample data
         7.  Master user password: *yourpassword*
         8.  Expand **Cluster permissions**
             1.  Choose an IAM role: *spectrum*
-            2.  Click **Add IAM role**
+            2.  Click **Add IAM role**  <-- Important; Confirm that you have successfully attached the role as illustrated below
 ![assign_iam_role](images/assign_iam_role.png)
     2.  Click **Create cluster**
 3.  Click **Clusters** and wait until Status becomes *Available*
