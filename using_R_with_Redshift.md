@@ -139,5 +139,5 @@ head(store_sales)
 Now we can start process the data in the usual `dplyr` way, such as `select`, `filter`, `group_by`, etc. which we won't go through here.
 
 # 3. References
-https://aws.amazon.com/blogs/big-data/connecting-r-with-amazon-redshift/
-https://db.rstudio.com/dplyr/
+* https://aws.amazon.com/blogs/big-data/connecting-r-with-amazon-redshift/
+* https://db.rstudio.com/dplyr/
