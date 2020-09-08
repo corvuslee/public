@@ -11,6 +11,7 @@
 ## Misc
 * [Connecting Tableau Desktop to Amazon Athena](tableau_athena.md)
 * [Using AWS Wrangler in Glue where Internet is not allowed](awswrangler_glue.md)
+* [Using R with Amazon Redshift](using_R_with_Redshift.md)
 
 # Machine learning
 * [Regression methods - predict housing prices](NWU/Studying_regression_with_linear_and_ensembling_models.ipynb)
