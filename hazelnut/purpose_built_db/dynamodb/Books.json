@@ -1,0 +1,143 @@
+{
+  "ModelName": "Books",
+  "ModelMetadata": {
+    "Author": "Corvus LEE",
+    "DateCreated": "Sep 14, 2020, 03:46 PM",
+    "DateLastModified": "Sep 15, 2020, 06:05 PM",
+    "Description": "For the self learning material in https://github.com/corvuslee/public",
+    "Version": "1.0"
+  },
+  "DataModel": [
+    {
+      "TableName": "Books",
+      "KeyAttributes": {
+        "PartitionKey": {
+          "AttributeName": "Author",
+          "AttributeType": "S"
+        },
+        "SortKey": {
+          "AttributeName": "Title",
+          "AttributeType": "S"
+        }
+      },
+      "NonKeyAttributes": [
+        {
+          "AttributeName": "Formats",
+          "AttributeType": "M"
+        },
+        {
+          "AttributeName": "Category",
+          "AttributeType": "S"
+        }
+      ],
+      "GlobalSecondaryIndexes": [
+        {
+          "IndexName": "CategoryIndex",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "Category",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        }
+      ],
+      "TableData": [
+        {
+          "Author": {
+            "S": "John Grisham"
+          },
+          "Title": {
+            "S": "The Rainmaker"
+          },
+          "Formats": {
+            "M": {
+              "Hardcover": "J4SUKVGU",
+              "Paperback": "D7YF4FCX"
+            }
+          },
+          "Category": {
+            "S": "Suspense"
+          }
+        },
+        {
+          "Author": {
+            "S": "John Grisham"
+          },
+          "Title": {
+            "S": "The Firm"
+          },
+          "Formats": {
+            "M": {
+              "Hardcover": "Q7QWE3U2",
+              "Paperback": "ZVZAYY4F",
+              "Audiobook": "DJ9KS9NM"
+            }
+          },
+          "Category": {
+            "S": "Suspense"
+          }
+        },
+        {
+          "Author": {
+            "S": "James Patterson"
+          },
+          "Title": {
+            "S": "Along Came a Spider"
+          },
+          "Formats": {
+            "M": {
+              "Hardcover": "C9NR6RJ7",
+              "Paperback": "37JVGDZG",
+              "Audiobook": "6348WX3U"
+            }
+          },
+          "Category": {
+            "S": "Suspense"
+          }
+        },
+        {
+          "Author": {
+            "S": "Dr. Seuss"
+          },
+          "Title": {
+            "S": "Green Eggs and Ham"
+          },
+          "Formats": {
+            "M": {
+              "Hardcover": "GVJZQ7JK",
+              "Paperback": "A4TFUR98",
+              "Audiobook": "XWMGHW96"
+            }
+          },
+          "Category": {
+            "S": "Children"
+          }
+        },
+        {
+          "Author": {
+            "S": "William Shakespeare"
+          },
+          "Title": {
+            "S": "Hamlet"
+          },
+          "Formats": {
+            "M": {
+              "Hardcover": "GVJZQ7JK",
+              "Paperback": "A4TFUR98",
+              "Audiobook": "XWMGHW96"
+            }
+          },
+          "Category": {
+            "S": "Drama"
+          }
+        }
+      ],
+      "DataAccess": {
+        "MySql": {}
+      }
+    }
+  ]
+}

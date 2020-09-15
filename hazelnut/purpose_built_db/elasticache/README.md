@@ -6,7 +6,7 @@ Finished the [Aurora lab](../aurora/)
 
 1. Go to the [introduction page](https://aws.amazon.com/getting-started/hands-on/boosting-mysql-database-performance-with-amazon-elasticache-for-redis/)
 2. Understand the architecture of cache-aside strategy
-3. Run the following commands in our Cloud9 IDE
+3. Skip the "Prerequisite" session in the webpage. Instead run the following commands in our Cloud9 IDE
 
 ```
 git clone https://github.com/aws-samples/amazon-elasticache-samples/
@@ -43,6 +43,8 @@ Go to [step 4](https://aws.amazon.com/getting-started/hands-on/boosting-mysql-da
 > * In Cloud9 press `Ctrl+N` and copy/paste/edit the Python and shell scripts
 
 Test connection
+
+\# Python
 ```py
 import redis
 client = redis.Redis.from_url('redis://your_redis_endpoint:6379')
@@ -50,6 +52,8 @@ client.ping()
 ```
 
 Configure environment variables
+
+\# Shell
 ```sh
 export REDIS_URL=redis://your_redis_endpoint:6379/
 export DB_HOST=the_prod_aurora_endpoint

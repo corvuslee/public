@@ -1,9 +1,11 @@
 
-- [Lab 1: RDBMS (30 mins)](#lab-1-rdbms-30-mins)
-- [Lab 2: Cache (45 mins)](#lab-2-cache-45-mins)
-- [Lab 3: NoSQL (45 mins)](#lab-3-nosql-45-mins)
+- [Lab 1: RDBMS - Amazon Aurora (30 mins)](#lab-1-rdbms---amazon-aurora-30-mins)
+- [Lab 2: Cache - Amazon ElastiCache (45 mins)](#lab-2-cache---amazon-elasticache-45-mins)
+- [Lab 3: NoSQL - Amazon DynamoDB (45 mins)](#lab-3-nosql---amazon-dynamodb-45-mins)
 
-# Lab 1: RDBMS (30 mins)
+> Use `us-east-1` region
+
+# Lab 1: RDBMS - Amazon Aurora (30 mins)
 In this lab, we are going to learn about the basic of Amazon Aurora
 
 1. Provision a serverless Aurora MySQL cluster for quick development
@@ -14,7 +16,7 @@ In this lab, we are going to learn about the basic of Amazon Aurora
 
 Go to [Aurora lab guide](aurora/README.md)
 
-# Lab 2: Cache (45 mins)
+# Lab 2: Cache - Amazon ElastiCache (45 mins)
 In this lab, we are going to learn how to deploy Amazon ElastiCache as an in-memory caching layer to the RDBMS
 
 1. Provision a ElastiCache for Redis cluster
@@ -24,7 +26,7 @@ In this lab, we are going to learn how to deploy Amazon ElastiCache as an in-mem
 
 Go to [ElastiCache lab guide](elasticache/README.md)
 
-# Lab 3: NoSQL (45 mins)
+# Lab 3: NoSQL - Amazon DynamoDB (45 mins)
 In this lab, we are going to learn about Amazon DynamoDB, with some basic data modelling
 
 1. Create a DynamoDB table
