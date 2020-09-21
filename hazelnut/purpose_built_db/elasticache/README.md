@@ -1,4 +1,4 @@
-A common way to improve RDBMS performance is to deploy cache-aside architecture using Amazon ElastiCache for Redis
+A common architecture is using Amazon Aurora as durable storage and cache-aside with Amazon ElastiCache for Redis. In this lab, we will explore the application code using a Redis client in Python.
 
 ![architecture](images/architecture.png)
 
@@ -40,11 +40,11 @@ Go to [step 1](https://aws.amazon.com/getting-started/hands-on/boosting-mysql-da
 
 # 2. Create a MySQL database
 
-**Skip** this section
+**Skip** this section. Done in previous lab
 
 # 3. Populate the MySQL database
 
-**Skip** this section
+**Skip** this section. Done in previous lab
 
 # 4. Caching and best practices
 

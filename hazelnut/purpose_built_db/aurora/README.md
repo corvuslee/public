@@ -129,7 +129,10 @@ Assume that we are satisfied with the development database, we can deploy it to 
 2. Click **Action > Take snapshot**
 3. Refresh the page and the snapshot will be ready in a minute
 4. Select the newly created snapshot, and click **Actions > Restore snapshot**
-   * DB specifications: *One writer multiple readers*
+   * DB specifications:
+     * Capacity type: *Provisioned*
+     * Replication feature: *Single-master*
+     * Engine version: *unchanged*
    * DB instance identifier: *prod*
    * Connectivity: *unchanged* (we keep the same VPC here, but you may want to select other VPC for actual workload)
    * DB instance size: *r5.large*

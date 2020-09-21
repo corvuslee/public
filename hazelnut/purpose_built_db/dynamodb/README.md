@@ -19,7 +19,7 @@ Provisioned the Cloud9 environment in the [Aurora lab](../aurora/)
 
 # NoSQL Workbench (optional)
 
-We are using [NoSQL Workbench for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html) to visualize the data model. Download the sample data model as raw file from [here](Books.json) and import into the tools. This step is optional as the screenshots are attached here.
+We are using [NoSQL Workbench for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html) to visualize the data model. Download the sample data model from [here](Books.json) (open the page, right click on "raw" and save the file) and import into the tools. This step is optional as the screenshots are attached here.
 
 ![Import data model](images/workbench-import.png)
 
@@ -40,6 +40,10 @@ We are using [NoSQL Workbench for DynamoDB](https://docs.aws.amazon.com/amazondy
 
 3. In the Cloud9 IDE, create a new directory (`~/environment/dynamodb-lab`), to not mixing up wit the previous labs
 4. Follow step 3 in the page to download supporting code
+
+```
+curl -sL https://s3.amazonaws.com/ddb-deep-dive/dynamodb.tar | tar -xv
+```
 
 ![Cloud9](images/cloud9-directory.png)
 
