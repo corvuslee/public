@@ -58,7 +58,7 @@ Development workloads are often *intermittent* and *unpredictable*. Aurora serve
 4. Click **Edit inbound rules**
 5. Click **Add rule**
    * Type: All traffic (use a more restrictive rule in your own environment)
-   * Source: type *cloud9* and select the only group that pops up
+   * Source: type *cloud9* and **select** the only group that pops up
    * Click **Save rules**
 ![edit inbound rules](images/edit_inbound.png)
 
@@ -131,7 +131,7 @@ Assume that we are satisfied with the development database, we can deploy it to 
 4. Select the newly created snapshot, and click **Actions > Restore snapshot**
    * DB specifications: *One writer multiple readers*
    * DB instance identifier: *prod*
-   * Connectivity: *unchanged* (we keep the same VPC here, but you may select other VPC in your own environment)
+   * Connectivity: *unchanged* (we keep the same VPC here, but you may want to select other VPC for actual workload)
    * DB instance size: *r5.large*
    * Additional configurations
      * Enable backtrack: 24 hours
@@ -157,8 +157,8 @@ Assume that we are satisfied with the development database, we can deploy it to 
 * **Add reader** -  scaling read operations and increasing availability (failover) as illustrated in the diagram below
 
 ![aurora rr](images/aurora_rr.png)
-* **Create clone**
-* **Restore to point in time**
+* **Create clone** - in just a few minutes
+* **Restore to point in time** - RPO: 5 minutes
 * **Create cross region read replica**
 
 ![aurora cross region rr](images/aurora_crrr.png)
@@ -170,6 +170,9 @@ Assume that we are satisfied with the development database, we can deploy it to 
 > Browse through the console and check how to perform the following actions:
 
 * Review the cluster maintenance window - when items like OS or DB patching will happen. To know more check the [doc](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_UpgradeDBInstance.Maintenance.html)
+  * required - can be deferred temporarily
+  * available - can be deferred indefinitely
+  * next window
 
 ## CloudWatch metrics
 

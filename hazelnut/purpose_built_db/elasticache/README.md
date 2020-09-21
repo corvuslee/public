@@ -1,3 +1,15 @@
+A common way to improve RDBMS performance is to deploy cache-aside architecture using Amazon ElastiCache for Redis
+
+![architecture](images/architecture.png)
+
+- [Prerequisite](#prerequisite)
+- [Introduction](#introduction)
+- [1. Create a Redis cluster](#1-create-a-redis-cluster)
+- [2. Create a MySQL database](#2-create-a-mysql-database)
+- [3. Populate the MySQL database](#3-populate-the-mysql-database)
+- [4. Caching and best practices](#4-caching-and-best-practices)
+- [Operations](#operations)
+
 # Prerequisite
 
 Finished the [Aurora lab](../aurora/)
@@ -5,7 +17,7 @@ Finished the [Aurora lab](../aurora/)
 # Introduction
 
 1. Go to the [introduction page](https://aws.amazon.com/getting-started/hands-on/boosting-mysql-database-performance-with-amazon-elasticache-for-redis/)
-2. Understand the architecture of cache-aside strategy
+2. Understand the learning goal
 3. Skip the "Prerequisite" session in the webpage. Instead run the following commands in our Cloud9 IDE
 
 ```
@@ -24,7 +36,7 @@ pip install -r requirements.txt --user
 
 Go to [step 1](https://aws.amazon.com/getting-started/hands-on/boosting-mysql-database-performance-with-amazon-elasticache-for-redis/1/) in the page and follow the instructions
 
-> **Security group**: use the *default*, which is also assigned to our Aurora cluster.
+> **Security group**: use the *default*, which is also assigned to our Aurora cluster
 
 # 2. Create a MySQL database
 
@@ -42,7 +54,7 @@ Go to [step 4](https://aws.amazon.com/getting-started/hands-on/boosting-mysql-da
 > * Run the commands in Cloud9 instead of EC2 instance
 > * In Cloud9 press `Ctrl+N` and copy/paste/edit the Python and shell scripts
 
-Test connection
+1. Test connection
 
 \# Python
 ```py
@@ -51,7 +63,7 @@ client = redis.Redis.from_url('redis://your_redis_endpoint:6379')
 client.ping()
 ```
 
-Configure environment variables
+2. Configure environment variables
 
 \# Shell
 ```sh
@@ -62,7 +74,7 @@ export DB_PASS=your_admin_password
 export DB_NAME=tutorial
 ```
 
-Run `example.py`
+3. Run `example.py`
 ```
 python ~/environment/amazon-elasticache-samples/database-caching/example.py
 ```

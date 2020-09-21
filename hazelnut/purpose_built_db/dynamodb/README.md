@@ -1,8 +1,12 @@
+Other than using Amazon Aurora as durable storage and Amazon ElastiCache as shown in [ElastiCache lab](../elasticache/), a common architecture is using Amazon DynamoDB -- A serverless NoSQL database service.
+
 - [Prerequisite](#prerequisite)
 - [NoSQL Workbench (optional)](#nosql-workbench-optional)
 - [Introduction](#introduction)
 - [1. Application background](#1-application-background)
 - [2. Inserting and retrieving data](#2-inserting-and-retrieving-data)
+  - [2.1 Create table](#21-create-table)
+  - [2.2 Insert items](#22-insert-items)
 - [3. Querying and global secondary indexes (GSI)](#3-querying-and-global-secondary-indexes-gsi)
   - [3.1 Query - retrieve multiple items by partition key](#31-query---retrieve-multiple-items-by-partition-key)
   - [3.2 GSI](#32-gsi)
@@ -15,7 +19,7 @@ Provisioned the Cloud9 environment in the [Aurora lab](../aurora/)
 
 # NoSQL Workbench (optional)
 
-We are using [NoSQL Workbench for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html) to visualize the data model. Download the [sample data model](Books.json) and import into the tools. This step is optional as the screenshots are attached here.
+We are using [NoSQL Workbench for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html) to visualize the data model. Download the sample data model as raw file from [here](Books.json) and import into the tools. This step is optional as the screenshots are attached here.
 
 ![Import data model](images/workbench-import.png)
 
@@ -41,19 +45,26 @@ We are using [NoSQL Workbench for DynamoDB](https://docs.aws.amazon.com/amazondy
 
 # 2. Inserting and retrieving data
 
+## 2.1 Create table
+
 1. Go to [module 2](https://aws.amazon.com/getting-started/hands-on/create-manage-nonrelational-database-dynamodb/3/)
 2. Understand the terminology: `table`, `item`, `attribute`, simple and composite `primary key`
-3. Read carefully the data model section. Then create a DynamoDB table by issuing the `create_table.py` script in Cloud9
+3. Read carefully the data model section
+4. Instead of running `create_table.py` script, we can create the table manually
+   1. Go to the [DynamoDB console](https://console.aws.amazon.com/dynamodb/home)
+   2. Click **Create table**
+      * Table name: *Books*
+      * Partition key: *Author* - String
+      * Sort key: *Title* - String
+      * Table settings: uncheck *use default settings*
+      * Read/write capacity mode: *On-demand*
+      * Click **Create**
 
-> Note how the primary key consists of:
-> * Partition key (hash key): Author
-> * Sort key (range key): Title
->
-> This addresses our access pattern #1
+> Optional: Understand the difference between **On-demand** mode and **Provisioned model** - [doc](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html)
 
-> Optional: Understand the details on partition key and sort key - [doc](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.Partitions.html)
+## 2.2 Insert items
 
-4. Load items into the table by issuing the `insert_items.py` script in Cloud9
+1. Load items into the table by issuing the `insert_items.py` script in Cloud9
 
 > Note how additional attributes: Category - `String` and Formats - `Map` can be added during the insert
 
