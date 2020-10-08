@@ -16,7 +16,7 @@ In this lab, we are going to learn about the basic of Amazon Aurora
 Go to [Aurora lab guide](aurora/README.md)
 
 # Lab 2: Cache - Amazon ElastiCache (45 mins)
-In this lab, we are going to learn how to deploy Amazon ElastiCache as an in-memory caching layer to the RDBMS
+In this lab, we are going to learn 1) how to deploy Amazon ElastiCache as an in-memory caching layer to the RDBMS, and 2) sample application code to work with Redis
 
 1. Provision a ElastiCache for Redis cluster
 2. Review the cache-aside strategy and related Python code
@@ -33,5 +33,6 @@ In this lab, we are going to learn about Amazon DynamoDB, with some basic data m
 3. Visualize the data model
 4. Create a global secondary index for another query pattern
 5. Update an item
+6. Explore common operations
 
 Go to [DynamoDB lab guide](dynamodb/README.md)

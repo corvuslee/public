@@ -2,26 +2,29 @@ Development workloads are often *intermittent* and *unpredictable*. Aurora serve
 
 ![aurora overview](images/aurora_overview.png)
 
-- [Provision a serverless Aurora cluster](#provision-a-serverless-aurora-cluster)
-- [Prepare client environment and connectivity](#prepare-client-environment-and-connectivity)
-  - [AWS Cloud9](#aws-cloud9)
-  - [Security group](#security-group)
-  - [Connect with MySQL client](#connect-with-mysql-client)
-- [Insert sample data](#insert-sample-data)
+- [Quick Development](#quick-development)
+  - [Provision a serverless Aurora cluster](#provision-a-serverless-aurora-cluster)
+  - [Prepare client environment and connectivity](#prepare-client-environment-and-connectivity)
+    - [AWS Cloud9](#aws-cloud9)
+    - [Security group](#security-group)
+    - [Connect with MySQL client](#connect-with-mysql-client)
+  - [Insert sample data](#insert-sample-data)
 - [Deploy to provisioned mode](#deploy-to-provisioned-mode)
+  - [Add a read replica for high availability](#add-a-read-replica-for-high-availability)
 - [Explore availability features](#explore-availability-features)
-- [Explore operations](#explore-operations)
+- [Operations](#operations)
   - [CloudWatch metrics](#cloudwatch-metrics)
   - [Performance insight](#performance-insight)
 
-# Provision a serverless Aurora cluster
+# Quick Development
+## Provision a serverless Aurora cluster
 
 1. Go to the [RDS console](https://console.aws.amazon.com/rds/home) and click **Create database**
 2. Engine options
    * Amazon Aurora
    * MySQL compatibility
+   * Capacity type: *Serverless*
    * Version: *5.6.10a*
-   * Database location: *regional*
 3. Database features: *serverless*
 4. Templates: *Dev/test*
 ![provision serverless](images/provision_serverless.png)
@@ -40,16 +43,16 @@ Development workloads are often *intermittent* and *unpredictable*. Aurora serve
    * Data API: *True*
 8. Click **Create database**
 
-# Prepare client environment and connectivity
+## Prepare client environment and connectivity
 
-## AWS Cloud9
+### AWS Cloud9
 
 1. Go to the [Cloud9 console](https://console.aws.amazon.com/cloud9/home)
 2. Click **Create environment**
 3. Name: *dev*
 4. Leave everything else default, and click **Create environment**
 
-## Security group
+### Security group
 
 1. When the Cloud9 IDE is ready, go to the [VPC console](https://console.aws.amazon.com/vpc/home)
 2. On the left navigation menu, under Security, click **Security groups**
@@ -62,7 +65,7 @@ Development workloads are often *intermittent* and *unpredictable*. Aurora serve
    * Click **Save rules**
 ![edit inbound rules](images/edit_inbound.png)
 
-## Connect with MySQL client
+### Connect with MySQL client
 
 1. Go back to the Cloud9 IDE
 2. Click **Window > New terminal**
@@ -81,7 +84,7 @@ mysql> select version();
 1 row in set (0.00 sec)
 ```
 
-# Insert sample data
+## Insert sample data
 
 ```sql
 CREATE database tutorial;
@@ -148,7 +151,30 @@ Assume that we are satisfied with the development database, we can deploy it to 
 > * **Copy snapshot** - by copying the backup data to another region, this provides a cost effective method for cross-region disaster recovery. 
 > * **Export to Amazon S3** ([region availability](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_ExportSnapshot.html)) - by extracting data from the backup snapshot to S3 as parquet files, this enables a simple way to populate the data lake ([reference architecture](https://aws-reference-architectures.gitbook.io/datalake/)). The data are directly consumable by query services like Amazon Athena.
 
-(Optional) Once the `prod` cluster is ready, connect from Cloud9 and check that the `planet` table is intact.
+## Add a read replica for high availability
+
+A read replica can help scaling read operations and increasing availability (failover) as illustrated in the diagram below
+
+![aurora rr](images/aurora_rr.png)
+
+1. Select the Aurora cluster
+2. Click **Action** > **Add Reader**
+   * DB instance identifier: *prod-rr*
+   * DB instance size: *r5.large*
+   * Connectivity: *unchanged*
+   * Database authentication: *unchanged*
+   * Additional configuration: **Enable** enhanced monitoring 
+3. Click **Add reader**
+4. Note that the two nodes sit in different AZ
+
+![Cross-AZ cluster](images/aurora-2az-cluster.png)
+
+5. To trigger a failover, select a node, click **Action** > **Failover**
+6. Refresh the browser page after 10 seconds and check the status
+
+> **Advanced discussion**: 
+>
+> Check the Aurora failover time under different scenarios at https://aws.amazon.com/blogs/database/improving-application-availability-with-amazon-rds-proxy/
 
 # Explore availability features
 
@@ -157,9 +183,6 @@ Assume that we are satisfied with the development database, we can deploy it to 
 ![aurora availability](images/aurora_availability.png)
 
 * **Backtrack** - rewinding the database in place
-* **Add reader** -  scaling read operations and increasing availability (failover) as illustrated in the diagram below
-
-![aurora rr](images/aurora_rr.png)
 * **Create clone** - in just a few minutes
 * **Restore to point in time** - RPO: 5 minutes
 * **Create cross region read replica**
@@ -168,7 +191,7 @@ Assume that we are satisfied with the development database, we can deploy it to 
 
 > **Question**: What are the differences between cross-region read replica and cross-region copy snapshot? Think about the RTO and RPO.
 
-# Explore operations
+# Operations
 
 > Browse through the console and check how to perform the following actions:
 
