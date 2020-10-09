@@ -1,9 +1,6 @@
+# AWS Region
 
-- [Lab 1: RDBMS - Amazon Aurora (45 mins)](#lab-1-rdbms---amazon-aurora-45-mins)
-- [Lab 2: Cache - Amazon ElastiCache (45 mins)](#lab-2-cache---amazon-elasticache-45-mins)
-- [Lab 3: NoSQL - Amazon DynamoDB (45 mins)](#lab-3-nosql---amazon-dynamodb-45-mins)
-
-> Use `us-east-1` region
+> Please use the `us-east-1` region
 
 # Lab 1: RDBMS - Amazon Aurora (45 mins)
 In this lab, we are going to learn about the basic of Amazon Aurora
