@@ -125,8 +125,15 @@ Double click `example.py` to open the code in Cloud9
 * [Scale-up to handle write workloads](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Scaling.RedisReplGrps.html)
 ![change node type](images/scale_up.png)
 * [Replicate across regions using global datastore](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastore.html) - requires R5/M5 instance
-* [Monitoring](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheMetrics.WhichShouldIMonitor.html)
-  * `CPUUtilization` or `EngineCPUUtilization`
-  * `SwapUsage` < 50MB
-  * `Evictions`
-  * `CurrConnections`
+* [Monitoring Best Practices](https://aws.amazon.com/blogs/database/monitoring-best-practices-with-amazon-elasticache-for-redis-using-amazon-cloudwatch/)
+  * CPU
+    * `CPUUtilization` / `EngineCPUUtilization` - 65% WARN, 90% HIGH
+  * Memory
+    * `DatabaseMemoryUsagePercentage` < 100%
+    * `SwapUsage` < 50MB
+  * Network
+    * `NetworkBytesIn` / `NetworkBytesOut`
+  * Connections
+    * `CurrConnections`
+  * Replication
+    * `ReplicationLag`
