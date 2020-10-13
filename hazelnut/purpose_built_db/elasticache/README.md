@@ -44,6 +44,13 @@ Go to [step 1](https://aws.amazon.com/getting-started/hands-on/boosting-mysql-da
 
 > **Security group**: use the *default*, which is also assigned to our Aurora cluster
 
+> **Subnet group**: you may need to create a new subnet group separately:
+> * Name: *default*
+> * Description: *Default CacheSubnetGroup*
+> * VPC ID: select the VPC
+> * Availability Zone: *any one*
+> * Subnet ID: select the subnet
+
 ![multi-AZ architecture with cluster mode off](images/elasticache-multi-az.png)
 
 ## 2. Create a MySQL database
