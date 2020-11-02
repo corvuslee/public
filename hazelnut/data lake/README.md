@@ -3,9 +3,9 @@
 ![intro](images/00_intro.png)
 
 In this lab, you will:
-* **Catalog** the Amazon Customer Reviews Dataset (32GB) in TSV format using AWS Glue
+* **Catalog** the Amazon Customer Reviews Dataset (32GB gzip compressed) in TSV format using AWS Glue
 * Perform **ad-hoc query** using Amazon Athena
-* **Data processing** with Spark in Amazon EMR
+* **Data processing** with Spark in Amazon EMR or SQL in Amazon Athena
 * Create a single view in a **data warehouse** (with product dimension) with Amazon Redshift integrating the reviews data
 * **Build and deploy a machine learning model** to predict the product star rating using Amazon SageMaker Autopilot
 
