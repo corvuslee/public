@@ -4,6 +4,7 @@
 * [Purpose built DB getting started](hazelnut/purpose_built_db/)
 * [Glue getting started](hazelnut/glue/)
 * [RDS getting started](hazelnut/rds/)
+* [Migrating from MySQL to RDS MySQL using Percona XtraBackup](hazelnut/mysql-to-rds/)
 * [Redshift getting started](hazelnut/redshift/)
 
 ## Video
