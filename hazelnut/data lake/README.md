@@ -25,7 +25,7 @@ In this lab, you will:
 > * [04-quick look at raw data](04_quick_look_raw_data.md)
 > * [05c-processing athena](05c_processing_athena.md)
 > * [07-quick look at curated data](07_quick_look_curated_data.md)
-> * 11-visualize quicksight
+> * [11-visualize quicksight](11_visualize_quicksight.md)
 
 ![condensed architecture](images/00_condense.png)
 
