@@ -24,7 +24,6 @@ In this lab, you will:
 > * [03-catalogue raw](03_catalogue_raw.md)
 > * [04-quick look at raw data](04_quick_look_raw_data.md)
 > * [05c-processing athena](05c_processing_athena.md)
-> * [06-catalogue curated](06_catalogue_curated.md)
 > * [07-quick look at curated data](07_quick_look_curated_data.md)
 > * 11-visualize quicksight
 
