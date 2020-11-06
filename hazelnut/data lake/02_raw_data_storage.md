@@ -10,7 +10,7 @@ You can use various techniques to ingest and store data in your data lake, by ba
 
 # Amazon Customer Reviews Dataset
 
-[Link](https://console.aws.amazon.com/s3/buckets/amazon-reviews-pds/tsv/?region=us-east-1)
+View the data in this [Public bucket](https://console.aws.amazon.com/s3/buckets/amazon-reviews-pds/tsv/?region=us-east-1)
 
 ![s3](images/s3-tsv.png)
 
