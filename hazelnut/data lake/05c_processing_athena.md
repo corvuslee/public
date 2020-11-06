@@ -6,7 +6,8 @@ As the data to process is not big (32GB gzipped TSV), we can utilize Amazon Athe
 
 1. Open the [Amazon Athena Console](https://console.aws.amazon.com/athena/home)
 2. Select `reviews` from the database list
-3. Paste the following SQL into the **query editor**, and modify the `external_location`
+3. Paste the following SQL into the **query editor**
+4. Don't forget to modify the `external_location`
 
 ```sql
 CREATE TABLE reviews.parquet_athena 
