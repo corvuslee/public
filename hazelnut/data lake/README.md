@@ -6,6 +6,8 @@
 
 # Full version 
 
+Finish the [preparation](#preparation) first.
+
 > Go through all pages from 02-raw data storage to 10-ml autopilot
 
 ![full architecture](images/00_intro.png)
@@ -18,6 +20,8 @@ In this lab, you will:
 * **Build and deploy a machine learning model** to predict the product star rating using Amazon SageMaker Autopilot
 
 # Condensed version
+
+[Create the S3 bucket](#create-s3-buckets) first.
 
 > Go through the following pages:
 > * [02-raw data storage](02_raw_data_storage.md)
