@@ -11,20 +11,22 @@ In this task you will utilize Amazon Athena to take a quick look at the raw data
 ![Select database in Athena](images/athena-database.png)
 4. In the **Query Editor** try the following statements and note the response times:
 
-Total number of review counts
+Total number of review counts in the US marketplace
 ```sql
 SELECT COUNT(*) total_count
+WHERE marketplace='US'
 FROM tsv;
 ```
 1m16s, 32.22GB
 
-Review counts and average star rating per product category
+Review counts and average star rating per product category, in the US marketplace
 ```sql
 SELECT
   product_category,
   COUNT(*) review_count,
   AVG(CAST(star_rating AS real)) avg_star
 FROM tsv
+WHERE marketplace='US'
 GROUP BY product_category;
 ```
 1m40s, 32.22GB
