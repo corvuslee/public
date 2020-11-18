@@ -13,7 +13,7 @@ Detailed walkthrough
 
 ## Challenge
 Code to resolve some challenging problems
-* [Data transformation: Raw NYC taxi dataset (2009-2020)
+* [Data transformation: Raw NYC taxi dataset (2009-2020)](challenge/data%20transformation)
 
 ## Misc
 * [Connecting Tableau Desktop to Amazon Athena](tableau_athena.md)
