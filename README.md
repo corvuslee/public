@@ -35,3 +35,4 @@
 * [Central Limit Theorem in R](R/central_limit_theorem.md)
 * [Linear programming with Python](https://www.linkedin.com/pulse/linear-programming-python-siu-chung-corvus-lee/)
 * [Multi-objective Optimization with Gurobi in Python](https://www.linkedin.com/pulse/multi-objective-optimization-gurobi-python-siu-chung-corvus-lee)
+* [Sensitivity Analysis of a Multi-objective Optimization Model](https://www.linkedin.com/pulse/sensitivity-analysis-multi-objective-optimization-model-lee/)
