@@ -1,5 +1,6 @@
 # Learning AWS
 ## Lab
+Detailed walkthrough
 * [End to end data lake experience](hazelnut/data%20lake/)
 * [Purpose built DB getting started](hazelnut/purpose_built_db/)
 * [Glue getting started](hazelnut/glue/)
@@ -9,6 +10,10 @@
 
 ## Video
 * [RDS 30min tutorial & demo](https://pages.awscloud.com/hk-rds.html)
+
+## Challenge
+Code to resolve some challenging problems
+* [Data transformation: Raw NYC taxi dataset (2009-2020)](challenge/data%20transformation)
 
 ## Misc
 * [Connecting Tableau Desktop to Amazon Athena](tableau_athena.md)
