@@ -42,14 +42,13 @@ pip install -r requirements.txt --user
 
 Go to [step 1](https://aws.amazon.com/getting-started/hands-on/boosting-mysql-database-performance-with-amazon-elasticache-for-redis/1/) in the page and follow the instructions
 
-> **Security group**: use the *default*, which is also assigned to our Aurora cluster
+> **Subnet group**: Create new
+> * Name: *tutorial*
+> * Description: (blank)
+> * VPC ID: (default)
+> * Subnets: *select all subnets*
 
-> **Subnet group**: you may need to create a new subnet group separately:
-> * Name: *default*
-> * Description: *Default CacheSubnetGroup*
-> * VPC ID: select the VPC
-> * Availability Zone: *any one*
-> * Subnet ID: select the subnet
+> **Security group**: use the *default*, which is also assigned to our Aurora cluster
 
 ![multi-AZ architecture with cluster mode off](images/elasticache-multi-az.png)
 
