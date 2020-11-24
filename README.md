@@ -3,10 +3,12 @@
 Detailed walkthrough
 * [End to end data lake experience](hazelnut/data%20lake/)
 * [Purpose built DB getting started](hazelnut/purpose_built_db/)
-* [Glue getting started](hazelnut/glue/)
 * [RDS getting started](hazelnut/rds/)
 * [Migrating from MySQL to RDS MySQL using Percona XtraBackup](hazelnut/mysql-to-rds/)
 * [Redshift getting started](hazelnut/redshift/)
+
+## How-to
+* [Connect to Glue dev endpoint from VS Code](howto/vscode-glue-dev-endpoint.md)
 
 ## Video
 * [RDS 30min tutorial & demo](https://pages.awscloud.com/hk-rds.html)
