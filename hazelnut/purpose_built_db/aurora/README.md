@@ -164,7 +164,7 @@ A read replica can help scaling read operations and increasing availability (fai
    * Connectivity: *unchanged*
    * Database authentication: *unchanged*
    * Additional configuration: **Enable** enhanced monitoring
-     * Monitoring: *rds-monitoring-role*
+     * Monitoring: *default* or *rds-monitoring-role*
 3. Click **Add reader**
 4. Note that the two nodes sit in different AZ
 
