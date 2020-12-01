@@ -149,7 +149,7 @@ Assume that we are satisfied with the development database, we can deploy it to 
 > While waiting, go back to the snapshots page and explore different actions
 > ![aurora snapshot](images/aurora_snapshot.png)
 > * **Copy snapshot** - by copying the backup data to another region, this provides a cost effective method for cross-region disaster recovery. 
-> * **Export to Amazon S3** ([region availability](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_ExportSnapshot.html)) - by extracting data from the backup snapshot to S3 as parquet files, this enables a simple way to populate the data lake ([reference architecture](https://aws-reference-architectures.gitbook.io/datalake/)). The data are directly consumable by query services like Amazon Athena.
+> * **Export to Amazon S3** - by extracting data from the backup snapshot to S3 as parquet files, this enables a simple way to populate the data lake ([reference architecture](https://aws-reference-architectures.gitbook.io/datalake/)). The data are directly consumable by query services like Amazon Athena.
 
 ## Add a read replica for high availability
 

@@ -1,6 +1,8 @@
 # AWS Region
 
-> Please use the `us-east-1` region
+> Tested in
+> * us-east-1
+> * Should work in any regions
 
 # Lab 1: RDBMS - Amazon Aurora (45 mins)
 In this lab, we are going to learn about the basic of Amazon Aurora
