@@ -48,7 +48,14 @@ We are using [NoSQL Workbench for DynamoDB](https://docs.aws.amazon.com/amazondy
 curl -sL https://s3.amazonaws.com/ddb-deep-dive/dynamodb.tar | tar -xv
 ```
 
-3. Install the latest boto3 library
+3. If not in **us-east-1** region, replace the value with your region (e.g., **us-west-2**)
+
+```
+export region=<your region>
+sed -i ".bak" "s/us-east-1/$region/g" *.py
+```
+
+4. Install the latest boto3 library
 
 ```
 sudo pip install boto3
