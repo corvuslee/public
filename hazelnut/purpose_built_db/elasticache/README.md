@@ -31,7 +31,7 @@ git clone https://github.com/aws-samples/amazon-elasticache-samples/
 cd amazon-elasticache-samples/database-caching
 ```
 ```
-pip install -r requirements.txt --user
+python3 -m pip install -r requirements.txt --user
 ```
 
 > **Question**: In what scenarios should we choose Aurora read replica or ElastiCache for Redis? Think about what will be stored in both data stores.
