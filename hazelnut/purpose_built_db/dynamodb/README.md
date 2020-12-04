@@ -52,13 +52,13 @@ curl -sL https://s3.amazonaws.com/ddb-deep-dive/dynamodb.tar | tar -xv
 
 ```
 export region=<your region>
-sed -i ".bak" "s/us-east-1/$region/g" *.py
+sed -i".bak" "s/us-east-1/$region/g" *.py
 ```
 
 4. Install the latest boto3 library
 
 ```
-sudo pip install boto3
+sudo python3 -m pip install boto3
 ```
 
 ![Cloud9](images/cloud9-directory.png)
