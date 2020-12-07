@@ -85,10 +85,16 @@ Start with just one step: create a cluster
     "Parameters": {
         "Name": "MyWorkflowCluster",
         "VisibleToAllUsers": true,
-        "ReleaseLabel": "emr-5.32.0",
+        "ReleaseLabel": "emr-6.2.0",
         "Applications": [
             {
-                "Name": "Hive"
+                "Name": "Hadoop"
+            },
+            {
+                "Name": "Ganglia"
+            },
+            {
+                "Name": "Spark"
             }
         ],
         "ServiceRole": "EMR_DefaultRole",
@@ -99,7 +105,7 @@ Start with just one step: create a cluster
             "InstanceFleets": [
                 {
                     "InstanceFleetType": "MASTER",
-                    "Name": "MASTER",   
+                    "Name": "MASTER",
                     "TargetOnDemandCapacity": 1,
                     "InstanceTypeConfigs": [
                         {
@@ -118,7 +124,18 @@ Start with just one step: create a cluster
                     ]
                 }
             ]
-        }
+        },
+        "Configurations": [
+            {
+                "Classification": "string",
+                "Configurations": [
+                    "Configuration"
+                ],
+                "Properties": {
+                    "string": "string"
+                }
+            }
+        ]
     },
     "End": true
 }
@@ -140,6 +157,7 @@ Start with just one step: create a cluster
   * ReleaseLabel
   * Applications (Don't specify versions here)
   * LogUri
+  * Configurations
 
 > Sample ASL at [scripts/state_machine_1.asl.json](scripts/state_machine_1.asl.json)
 

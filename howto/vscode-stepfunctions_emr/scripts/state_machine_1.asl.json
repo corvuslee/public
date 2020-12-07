@@ -28,7 +28,7 @@
                     "InstanceFleets": [
                         {
                             "InstanceFleetType": "MASTER",
-                            "Name": "MASTER",   
+                            "Name": "MASTER",
                             "TargetOnDemandCapacity": 1,
                             "InstanceTypeConfigs": [
                                 {
@@ -47,7 +47,15 @@
                             ]
                         }
                     ]
-                }
+                },
+                "Configurations": [
+                    {
+                        "Classification": "spark-hive-site",
+                        "Properties": {
+                            "hive.metastore.client.factory.class": "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory"
+                        }
+                    }
+                ]
             },
             "End": true
         }
