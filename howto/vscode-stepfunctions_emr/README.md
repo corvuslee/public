@@ -72,8 +72,6 @@ Search for "AWS Toolkit" from the extensions and install as usual
 
 ![workflow framework](images/sf-start.png)
 
-> Reference: https://docs.aws.amazon.com/step-functions/latest/dg/connect-emr.html
-
 ## Provision cluster
 
 Start with just one step: create a cluster
@@ -152,7 +150,31 @@ Start with just one step: create a cluster
 * Select the Step Functions execution role
 * Give it a name to publish
 
+> Test the execution in [Step Functions console](https://console.aws.amazon.com/states/home?region=us-east-1#/statemachines). Note in the "Step output" the **ClusterId** will be passed along to the next state.
+>
+> ![clusterid](images/sf-clusterid.png)
+
 ## Terminate cluster
+We end by terminating the cluster, which can easily be done with this state:
+
+```json
+"Terminate_Cluster": {
+    "Type": "Task",
+    "Resource": "arn:aws:states:::elasticmapreduce:terminateCluster.sync",
+    "Parameters": {
+        "ClusterId.$": "$.ClusterId"
+    },
+    "End": true
+}
+```
+
+1. Paste right after the `Create_Cluster` state, which looks like
+![paste after create_cluster state](images/sf-terminate.png)
+2. Correct all errors in the ASL
+   * `Terminate_Cluster` cannot be reached: Modify the previous `End` state to `Next` state
+   * Format the document (`Option+Shift+F`) helps spot any missing commas or braces
+
+> Sample ASL at [scripts/state_machine_2.asl.json](scripts/state_machine_2.asl.json)
 
 ## Add a step
 
