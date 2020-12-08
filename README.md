@@ -9,6 +9,7 @@ Detailed walkthrough
 
 ## How-to
 * [Connect to Glue dev endpoint from VS Code](howto/vscode-glue-dev-endpoint.md)
+* [Using Step Functions to orchestrate a transient EMR cluster](howto/vscode-stepfunctions_emr/)
 
 ## Video
 * [RDS 30min tutorial & demo](https://pages.awscloud.com/hk-rds.html)
