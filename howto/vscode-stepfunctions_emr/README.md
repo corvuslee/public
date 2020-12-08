@@ -13,7 +13,6 @@
     - [Publish to Step Functions](#publish-to-step-functions)
   - [Terminate cluster](#terminate-cluster)
   - [Add a step](#add-a-step)
-  - [Add parallel steps](#add-parallel-steps)
 - [References](#references)
 
 # Using AWS Step Functions to orchestrate EMR job
@@ -22,20 +21,23 @@
 
 We can use a **transient cluster**: terminating the cluster right after job completion, to reduce the cost.
 
-[sample workflow]
+![sample workflow](images/sf-overview.png)
 
 # Developing state machine using VS Code
 
 ## Benefits
 * Familiar IDE
 * Side-by-side visualization of the workflow
-* Automatic linting 
+* Automatic linting <-- important for debugging
 
 > Check https://aws.amazon.com/blogs/compute/aws-step-functions-support-in-visual-studio-code/
 
 ## Install AWS Toolkit
 
 Search for "AWS Toolkit" from the extensions and install as usual
+
+* For VS Code - [Marketplace](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-toolkit-vscode)
+* For VSCodium - [Open VSX Registry](https://open-vsx.org/extension/amazonwebservices/aws-toolkit-vscode)
 
 ## Configure the credentials
 
@@ -45,15 +47,19 @@ Search for "AWS Toolkit" from the extensions and install as usual
 * Run `aws configure`
 * In VS Code, pick **AWS: profile:default** in the lower right corner
 
+> Refer to the [doc](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) for detailed steps 
+
 ### IAM
 * In the [IAM console](https://console.aws.amazon.com/iam/home), create a service role for Step Functions
   * Name: *StepFunctionsEMRRole*
   * Attached policies: *AWSLambdaRole*, *AmazonElasticMapReduceFullAccess* 
 
+> Refer to the [doc](https://docs.aws.amazon.com/step-functions/latest/dg/procedure-create-iam-role.html) for detailed steps. We grant full access to EMR for simplicity, which needs to be further limited.
+
 # Writing Amazon States Language (ASL)
 
-* Create a new xxx.asl.json file
-* Change the language type to **ASL**
+* Create a new file with extension **.asl.json**
+* VS Code recognizes the language type as **ASL**
 * Paste the following content and click **Render graph**
 
 ```json
@@ -74,9 +80,9 @@ Search for "AWS Toolkit" from the extensions and install as usual
 
 ## Provision cluster
 
-Start with just one step: create a cluster
+Start with just one step: create a cluster, to learn the basic of ASL.
 
-* Replace the *Pass* section (i.e., line 5-9) with the following
+* Replace the **Pass** section (i.e., line 5-9) with the following:
 
 ```json
 "Create_Cluster": {
@@ -141,8 +147,10 @@ Start with just one step: create a cluster
 }
 ```
 
-* Note the linting at line 3 `StartAt` and line 5 `Create_Cluster`. We have to correct this pair:
-  > In line 3, replace `Pass` with `Create_Cluster`
+* Note the lintings at:
+  * line 3: The value of "StartAt" property must be the name of an existing state
+  * line 5: The state cannot be reached. It must be referenced by at least one other state
+* To correct, replace `Pass` with `Create_Cluster` in line 3
 
 ### Copy the config from an existing cluster
 
@@ -195,9 +203,49 @@ We end by terminating the cluster, which can easily be done with this state:
 > Sample ASL at [scripts/state_machine_2.asl.json](scripts/state_machine_2.asl.json)
 
 ## Add a step
+Add a task state to run a PySpark script, in between cluster creation and termination. Note that we have added:
+* `ResultPath` to keep passing the step input to step output, specifically we need the `ClusterId` for cluster termination
+* `Retry`
 
-## Add parallel steps
+```json
+"Step_One": {
+    "Type": "Task",
+    "Resource": "arn:aws:states:::elasticmapreduce:addStep.sync",
+    "Parameters": {
+        "ClusterId.$": "$.ClusterId",
+        "Step": {
+            "Name": "The first step",
+            "ActionOnFailure": "CONTINUE",
+            "HadoopJarStep": {
+                "Jar": "command-runner.jar",
+                "Args": [
+                    "spark-script",
+                    "--deploy-mode",
+                    "cluster",
+                    "s3://bucket/path-to/dummy.py"
+                ]
+            }
+        }
+    },
+    "Retry": [
+        {
+            "ErrorEquals": [
+                "States.ALL"
+            ],
+            "IntervalSeconds": 1,
+            "MaxAttempts": 3,
+            "BackoffRate": 2.0
+        }
+    ],
+    "ResultPath": "$.stepone",
+    "End": true
+}
+```
+
+> Sample ASL at [scripts/state_machine_3.asl.json](scripts/state_machine_3.asl.json)
+
+![ResultPath](images/sf-resultpath.png)
 
 # References
 * https://docs.aws.amazon.com/step-functions/latest/dg/connect-emr.html
-* https://aws.amazon.com/blogs/aws/new-using-step-functions-to-orchestrate-amazon-emr-workloads/
+* https://docs.aws.amazon.com/emr/latest/APIReference/API_RunJobFlow.html
