@@ -1,0 +1,103 @@
+{
+    "Comment": "EMR sample",
+    "StartAt": "Create_Cluster",
+    "States": {
+        "Create_Cluster": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::elasticmapreduce:createCluster.sync",
+            "Parameters": {
+                "Name": "MyWorkflowCluster",
+                "VisibleToAllUsers": true,
+                "ReleaseLabel": "emr-6.2.0",
+                "Applications": [
+                    {
+                        "Name": "Hadoop"
+                    },
+                    {
+                        "Name": "Ganglia"
+                    },
+                    {
+                        "Name": "Spark"
+                    }
+                ],
+                "ServiceRole": "EMR_DefaultRole",
+                "JobFlowRole": "EMR_EC2_DefaultRole",
+                "LogUri": "s3n://aws-logs-123456789012-us-east-1/elasticmapreduce/",
+                "Instances": {
+                    "KeepJobFlowAliveWhenNoSteps": true,
+                    "InstanceFleets": [
+                        {
+                            "InstanceFleetType": "MASTER",
+                            "Name": "MASTER",
+                            "TargetOnDemandCapacity": 1,
+                            "InstanceTypeConfigs": [
+                                {
+                                    "InstanceType": "m6g.xlarge"
+                                }
+                            ]
+                        },
+                        {
+                            "InstanceFleetType": "CORE",
+                            "Name": "CORE",
+                            "TargetOnDemandCapacity": 2,
+                            "InstanceTypeConfigs": [
+                                {
+                                    "InstanceType": "m6g.xlarge"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "Configurations": [
+                    {
+                        "Classification": "spark-hive-site",
+                        "Properties": {
+                            "hive.metastore.client.factory.class": "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory"
+                        }
+                    }
+                ]
+            },
+            "Next": "Step_One"
+        },
+        "Step_One": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::elasticmapreduce:addStep.sync",
+            "Parameters": {
+                "ClusterId.$": "$.ClusterId",
+                "Step": {
+                    "Name": "The first step",
+                    "ActionOnFailure": "CONTINUE",
+                    "HadoopJarStep": {
+                        "Jar": "command-runner.jar",
+                        "Args": [
+                            "spark-submit",
+                            "--deploy-mode",
+                            "cluster",
+                            "s3://data.set.corvus/dev/dummy.py"
+                        ]
+                    }
+                }
+            },
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "States.ALL"
+                    ],
+                    "IntervalSeconds": 1,
+                    "MaxAttempts": 3,
+                    "BackoffRate": 2.0
+                }
+            ],
+            "ResultPath": "$.stepone",
+            "Next": "Terminate_Cluster"
+        },
+        "Terminate_Cluster": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::elasticmapreduce:terminateCluster.sync",
+            "Parameters": {
+                "ClusterId.$": "$.ClusterId"
+            },
+            "End": true
+        }
+    }
+}

@@ -1,0 +1,63 @@
+{
+    "Comment": "EMR sample",
+    "StartAt": "Create_Cluster",
+    "States": {
+        "Create_Cluster": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::elasticmapreduce:createCluster.sync",
+            "Parameters": {
+                "Name": "MyWorkflowCluster",
+                "VisibleToAllUsers": true,
+                "ReleaseLabel": "emr-6.2.0",
+                "Applications": [
+                    {
+                        "Name": "Hadoop"
+                    },
+                    {
+                        "Name": "Ganglia"
+                    },
+                    {
+                        "Name": "Spark"
+                    }
+                ],
+                "ServiceRole": "EMR_DefaultRole",
+                "JobFlowRole": "EMR_EC2_DefaultRole",
+                "LogUri": "s3n://aws-logs-123456789012-us-east-1/elasticmapreduce/",
+                "Instances": {
+                    "KeepJobFlowAliveWhenNoSteps": true,
+                    "InstanceFleets": [
+                        {
+                            "InstanceFleetType": "MASTER",
+                            "Name": "MASTER",
+                            "TargetOnDemandCapacity": 1,
+                            "InstanceTypeConfigs": [
+                                {
+                                    "InstanceType": "m6g.xlarge"
+                                }
+                            ]
+                        },
+                        {
+                            "InstanceFleetType": "CORE",
+                            "Name": "CORE",
+                            "TargetOnDemandCapacity": 2,
+                            "InstanceTypeConfigs": [
+                                {
+                                    "InstanceType": "m6g.xlarge"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "Configurations": [
+                    {
+                        "Classification": "spark-hive-site",
+                        "Properties": {
+                            "hive.metastore.client.factory.class": "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory"
+                        }
+                    }
+                ]
+            },
+            "End": true
+        }
+    }
+}
