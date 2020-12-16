@@ -12,8 +12,11 @@
     - [Modify the values in the ASL file](#modify-the-values-in-the-asl-file)
     - [Publish to Step Functions](#publish-to-step-functions)
   - [Terminate cluster](#terminate-cluster)
-  - [Add a step](#add-a-step)
+  - [Add a Spark step](#add-a-spark-step)
 - [References](#references)
+- [Extras](#extras)
+  - [Add a shell script step](#add-a-shell-script-step)
+  - [Add a Hive script step](#add-a-hive-script-step)
 
 # Using AWS Step Functions to orchestrate EMR job
 
@@ -202,7 +205,7 @@ We end by terminating the cluster, which can easily be done with this state:
 
 > Sample ASL at [scripts/state_machine_2.asl.json](scripts/state_machine_2.asl.json)
 
-## Add a step
+## Add a Spark step
 Add a task state to run a PySpark script, in between cluster creation and termination. Note that we have added:
 * `ResultPath` to keep passing the step input to step output, specifically we need the `ClusterId` for cluster termination
 * `Retry`
@@ -222,7 +225,7 @@ Add a task state to run a PySpark script, in between cluster creation and termin
                     "spark-script",
                     "--deploy-mode",
                     "cluster",
-                    "s3://bucket/path-to/dummy.py"
+                    "s3://mybucket/path-to/dummy.py"
                 ]
             }
         }
@@ -249,3 +252,65 @@ Add a task state to run a PySpark script, in between cluster creation and termin
 # References
 * https://docs.aws.amazon.com/step-functions/latest/dg/connect-emr.html
 * https://docs.aws.amazon.com/emr/latest/APIReference/API_RunJobFlow.html
+
+# Extras
+
+## Add a shell script step
+
+Using [Script Runner](https://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-hadoop-script.html)
+
+* The script-runner.jar file requires full path to the correct "region"
+
+```json
+"Step_Two": {
+    "Type": "Task",
+    "Resource": "arn:aws:states:::elasticmapreduce:addStep.sync",
+    "Parameters": {
+        "ClusterId.$": "$.ClusterId",
+        "Step": {
+            "Name": "The second step",
+            "ActionOnFailure": "CONTINUE",
+            "HadoopJarStep": {
+                "Jar": " s3://<region>.elasticmapreduce/libs/script-runner/script-runner.jar",
+                "Args": [
+                    "s3://mybucket/path-to/dummy.sh"
+                ]
+            }
+        }
+    },
+    "ResultPath": "$.steptwo",
+    "End": true
+}
+```
+
+## Add a Hive script step
+
+```json
+"Step_Three": {
+    "Type": "Task",
+    "Resource": "arn:aws:states:::elasticmapreduce:addStep.sync",
+    "Parameters": {
+        "ClusterId.$": "$.ClusterId",
+        "Step": {
+            "Name": "The third step",
+            "ActionOnFailure": "CONTINUE",
+            "HadoopJarStep": {
+                "Jar": "command-runner.jar",
+                "Args": [
+                    "hive-script",
+                    "--run-hive-script",
+                    "--args",
+                    "-f",
+                    "s3://mybucket/script-path/my_script.q",
+                    "-d",
+                    "INPUT=s3://mybucket",
+                    "-d",
+                    "OUTPUT=s3://mybucket/queryresult/"
+                ]
+            }
+        }
+    },
+    "ResultPath": "$.stepthree",
+    "End": true
+}
+```
