@@ -2,6 +2,7 @@
   - [Method](#method)
     - [Green taxi](#green-taxi)
     - [For-hire vehicle (FHV)](#for-hire-vehicle-fhv)
+      - [Spark UI](#spark-ui)
     - [The rest](#the-rest)
 
 # Challenge 3
@@ -24,6 +25,8 @@ EMR for code development:
   * Cluster scaling: Max 4 core nodes (on-demand) and 26 task nodes (spot)
 
 ## Method
+
+> Notebook at [notebook/03-spark_schema_evolution.ipynb](notebook/03-spark_schema_evolution.ipynb)
 
 ### Green taxi
 
@@ -81,7 +84,8 @@ df1_schema = StructType([
     StructField('ehail_fee',DoubleType(),True),
     StructField('total_amount',DoubleType(),True),
     StructField('payment_type',IntegerType(),True),
-    StructField('trip_type' ,IntegerType(),True)])
+    StructField('trip_type' ,IntegerType(),True)
+])
 ```
 
 4. Load again the 2013-2014 data
@@ -134,13 +138,14 @@ partitions = ['year', 'month']
  .write.mode("OVERWRITE")
  .option("maxRecordsPerFile", 1000000)
  .partitionBy(partitions)
- .parquet(output_path, compression="gzip"))
+ .parquet(green_output_path, compression="gzip"))
 ```
 
+It takes around 6 minutes, and the parquets files (1.5GB) are partitioned by year and date. Don't be surprised that we have trip records in year 2081. Real world data is messy and we will work on the data profiling later.
 
 ### For-hire vehicle (FHV)
 
-Schema for the FHV dataset is quite a mess. Recall from challenge 1:
+FHV is a bit easier than green taxi with only column rename and additional. Recall the schema from challenge 1:
 
 | year | schema |- |- |- |- |- |- |
 | ---- | ------ |- |- |- |- |- |- |
@@ -148,6 +153,33 @@ Schema for the FHV dataset is quite a mess. Recall from challenge 1:
 | 2017 | Dispatching_base_num|Pickup_DateTime|DropOff_datetime|PUlocationID|DOlocationID |
 | 2018 | Pickup_DateTime|DropOff_datetime|PUlocationID|DOlocationID|SR_Flag|Dispatching_base_number|Dispatching_base_num |
 | 2019-2020 | dispatching_base_num|pickup_datetime|dropoff_datetime|PULocationID|DOLocationID|SR_Flag |
+
+* 2015-2016
+  * **locationID** is referring to pickup location as indicated in the [trip record user guide](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
+  * Does **Pickup_date** includes time? Yes.
+* 2018
+  * Duplicated **Dispatching_base_number** and **Dispatching_base_num**? Safely drop the former column
+
+
+Schema evolution (compared to 2020):
+* 2015-2016: Add dropoff_datetime, DOlocationID, SR_Flag
+* 2017: Add SR_Flag
+* 2018: Remove Dispatching_base_number; Reorder the columns
+
+The process can take 22 minutes, and the resulting parquet files are 5.8GB in total.
+
+#### Spark UI
+
+In EMR, we can still access the Spark history server even when the cluster has been terminated.
+
+The first job takes 20 minutes
+![job list](img/sparkui_joblist.png)
+
+Read four dataset into dataframes, add/remove columns, union and shuffle
+![DAG](img/sparkui_dag.png)
+
+Note the data skew, and spill (memory/disk). A brute force way may be switch to r6g instance.
+![task summary](img/sparkui_tasksummary.png)
 
 ### The rest
 
