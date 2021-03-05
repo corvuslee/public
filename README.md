@@ -13,6 +13,7 @@ Detailed walkthrough
 
 ## Video
 * [RDS 30min tutorial & demo](https://pages.awscloud.com/hk-rds.html)
+* [RDS Proxy 30min tutorial & demo, Cantonese](https://hktw-resources.awscloud.com/aws-%E5%BB%A3%E6%9D%B1%E8%A9%B1%E5%AF%A6%E6%88%B0%E5%B7%A5%E4%BD%9C%E5%9D%8A/amazon-rds-proxy-%E7%B0%A1%E4%BB%8B%E5%8F%8A%E7%A4%BA%E7%AF%84)
 
 ## Challenge
 Code to resolve some challenging problems
