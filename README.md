@@ -25,29 +25,29 @@ Code to resolve some challenging problems
 * [Using R with Amazon Redshift](using_R_with_Redshift.md)
 
 # Machine learning
-* [Regression methods - predict housing prices](NWU/Studying_regression_with_linear_and_ensembling_models.ipynb)
+* [Regression methods - predict housing prices](NU/Studying_regression_with_linear_and_ensembling_models.ipynb)
   * Data preprocessing: scikit-learn pipeline, custom transformer
   * Linear models: Ridge, Lasso, ElasticNet
   * Ensembling: Random forest, GBRT
-  * [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/corvuslee/public/blob/master/NWU/Studying_regression_with_linear_and_ensembling_models.ipynb)
+  * [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/corvuslee/public/blob/master/NU/Studying_regression_with_linear_and_ensembling_models.ipynb)
   
-* [PCA-RF - MNIST dataset](NWU/Studying_PCA-RF_classifier_with_the_MNIST_dataset.ipynb)
+* [PCA-RF - MNIST dataset](NU/Studying_PCA-RF_classifier_with_the_MNIST_dataset.ipynb)
   * Dimensionality reduction and its effect on classification
-  * [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/corvuslee/public/blob/master/NWU/Studying_PCA-RF_classifier_with_the_MNIST_dataset.ipynb)
+  * [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/corvuslee/public/blob/master/NU/Studying_PCA-RF_classifier_with_the_MNIST_dataset.ipynb)
 
-* [MLP - MNIST dataset](NWU/Studying_MLP_architectures_with_the_MNIST_dataset.ipynb)
+* [MLP - MNIST dataset](NU/Studying_MLP_architectures_with_the_MNIST_dataset.ipynb)
   * MLP design (# of neurons and hidden layers) with a good model performance and short training time
-  * [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/corvuslee/public/blob/master/NWU/Studying_MLP_architectures_with_the_MNIST_dataset.ipynb)
+  * [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/corvuslee/public/blob/master/NU/Studying_MLP_architectures_with_the_MNIST_dataset.ipynb)
 
-* [CNN - Dogs vs. Cats (25000 images)](NWU/Studying_CNN_architectures_with_the_dogs_vs_cats_dataset.ipynb)
+* [CNN - Dogs vs. Cats (25000 images)](NU/Studying_CNN_architectures_with_the_dogs_vs_cats_dataset.ipynb)
   * Importance of image augmentation
   * Transfer learning from Xception
-  * [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/corvuslee/public/blob/master/NWU/Studying_CNN_architectures_with_the_dogs_vs_cats_dataset.ipynb)
+  * [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/corvuslee/public/blob/master/NU/Studying_CNN_architectures_with_the_dogs_vs_cats_dataset.ipynb)
 
-* [RNN - Disaster tweets dataset](NWU/Studying_architectures_for_NLP_with_disaster_tweets_dataset.ipynb)
+* [RNN - Disaster tweets dataset](NU/Studying_architectures_for_NLP_with_disaster_tweets_dataset.ipynb)
   * Pretrained sentence encoder - nnlm-en-dim50
   * Pretrained word vectors - GloVe.6B, GloVe.Twitter
-  * [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/corvuslee/public/blob/master/NWU/Studying_architectures_for_NLP_with_disaster_tweets_dataset.ipynb)
+  * [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/corvuslee/public/blob/master/NU/Studying_architectures_for_NLP_with_disaster_tweets_dataset.ipynb)
 
 # Others
 * [Central Limit Theorem in R](R/central_limit_theorem.md)
