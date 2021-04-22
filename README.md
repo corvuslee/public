@@ -1,3 +1,14 @@
+- [Learning AWS](#learning-aws)
+  - [Lab](#lab)
+  - [How-to](#how-to)
+  - [Video](#video)
+  - [Challenge](#challenge)
+  - [Misc](#misc)
+- [Machine learning](#machine-learning)
+- [Edge ML](#edge-ml)
+- [Others](#others)
+  - [How-to](#how-to-1)
+
 # Learning AWS
 ## Lab
 Detailed walkthrough
@@ -57,3 +68,6 @@ Code to resolve some challenging problems
 * [Linear programming with Python](https://www.linkedin.com/pulse/linear-programming-python-siu-chung-corvus-lee/)
 * [Multi-objective Optimization with Gurobi in Python](https://www.linkedin.com/pulse/multi-objective-optimization-gurobi-python-siu-chung-corvus-lee)
 * [Sensitivity Analysis of a Multi-objective Optimization Model](https://www.linkedin.com/pulse/sensitivity-analysis-multi-objective-optimization-model-lee/)
+
+## How-to
+* [Sending Gmail using CLI on macOS](howto/send_gmail_cli.md)
