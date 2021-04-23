@@ -8,4 +8,5 @@ ML Inference at edge, supporting
 <img src="https://lh3.googleusercontent.com/de13WbQfoPiZcW_LZ9amfTTw3sIExVAk19BYsXIt9GLNWADq9EWUpkE8RTA5wiEIthLc3cUM0jsTpiafYG0Gu7-sDWZN5ZzdPBaeyg=w2000-rw">
 
 # Table of Content
-1. [Setup the Coral Dev Board Mini](01_setup.md)
+1. [Setup the board on macOS](01_setup.md)
+2. [Connect the Coral camera](02_camera.md)
