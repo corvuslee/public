@@ -88,6 +88,14 @@ echo "ssh-rsa xxxxxx" > /home/mendel/.ssh/authorized_keys
 nmtui
 ```
 
+If using Windows, `nmtui` may complain about the screen. use `nmcli` instead
+
+```
+nmcli device wifi rescan
+nmcli device wifi list
+nmcli device wifi connect <SSID> --ask
+```
+
 Exit the serial console, and unplug the OTG cable.
 
 ## 1.5. Connect to the board with MDT shell
