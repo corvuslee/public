@@ -9,7 +9,8 @@
   - [1.6. Update the Mendel software](#16-update-the-mendel-software)
 
 # 1. Setup the board on macOS
-> Tested on Catalina (10.15)
+> * Tested on Catalina (10.15)
+> * Caution: currently doesn't work on Big Sur
 
 ## 1.1. Conda
 
