@@ -2,8 +2,8 @@
 Convert raw PASCAL dataset to TFRecord for object_detection.
 Example usage:
     python object_detection/dataset_tools/create_custom_pascal_tf_record.py \
-        --data_dir=$HOME/Desktop/dataset/test \
-        --output_path=$HOME/Desktop/dataset/test/test.tfrecord \
+        --data_dir=$HOME/Desktop/dataset/val \
+        --output_path=$HOME/Desktop/dataset/test/val.tfrecord \
         --label_map_path=$HOME/Desktop/dataset/label_map.pbtxt
 
 Reference:

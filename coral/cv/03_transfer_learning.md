@@ -1,6 +1,3 @@
-# Work in progress
-
-- [Work in progress](#work-in-progress)
 - [Preparation](#preparation)
   - [Create a new conda environment](#create-a-new-conda-environment)
 - [Draw bounding boxes](#draw-bounding-boxes)
@@ -12,6 +9,9 @@
   - [Configure the training pipeline](#configure-the-training-pipeline)
   - [Start the retrain process](#start-the-retrain-process)
 - [Compile the model for Edge TPU](#compile-the-model-for-edge-tpu)
+- [Test the new model](#test-the-new-model)
+
+To start with, we can base on the a [pretrained model](https://coral.ai/models/object-detection/) -- SSD MobileNet v2 with the COCO dataset. There is a class called "person" in the COCO dataset, meaning that there is a high chance we can fine tune the model (i.e., transfer learning) to recognize individual family member.
 
 # Preparation
 
@@ -19,7 +19,7 @@
 
 environment.yml
 ```yml
-name: labelImg
+name: couchpotato
 channels:
   - defaults
   - conda-forge
@@ -36,16 +36,16 @@ pip3 install labelImg
 
 # Draw bounding boxes
 
-Put the JPG images under two folders:
+To fine tune the model recognizing individual family member, we need ground truth images. For this project, we have gathered 50 photos per person, and put the JPG images under two folders:
 * dataset/train
-* dataset/eval
+* dataset/val
 
 ```sh
 labelImg
 ```
 
-1. **Open Dir**: dataset/eval
-2. **Change Save Dir**: dataset/eval (same folder)
+1. **Open Dir**: dataset/val
+2. **Change Save Dir**: dataset/val (same folder)
 3. **Save format**: PascalVOC
 4. For each image, click **Create RectBox** and draw bounding boxes around each objects that need to be detected
 
@@ -71,7 +71,7 @@ export PYTHONPATH=$PYTHONPATH:`pwd`
 
 6. Created two files
    * train.tfrecord
-   * eval.tfrecord
+   * val.tfrecord
 
 # Retrain the object detection model
 
@@ -79,7 +79,7 @@ export PYTHONPATH=$PYTHONPATH:`pwd`
 
 ## Setup the Docker container
 
-Follow the steps in the guide above, and mount additional directory
+Follow the steps in the guide above, and mount additional directory `couchpotato`
 
 ```
 docker run --name edgetpu-detect \
@@ -99,7 +99,9 @@ Within the docker container (tensorflow/models/research/):
 * couchpotato/dataset/train.tfrecord
 * couchpotato/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03.tar.gz
 
-> The model file can be copied from the `learn_pet` directory
+> The model file can be downloaded from https://coral.ai/models/object-detection/
+
+> Looks like the SSDLite MobileDet has a higher mAP, which worths a try.
 
 ## Prepare the checkpoint directory
 ```
@@ -140,3 +142,54 @@ NUM_EVAL_STEPS=100
 
 # Compile the model for Edge TPU
 
+> Ref: https://www.coral.ai/docs/edgetpu/retrain-detection/#compile-the-model-for-the-edge-tpu
+
+```sh
+# From the Docker /tensorflow/models/research directory
+./convert_checkpoint_to_edgetpu_tflite.sh --checkpoint_num 500
+```
+
+Follow the guide above to:
+1. Convert a checkpoint to TF Lite file
+2. Install `edgetpu-compiler`
+
+3. Change the directory ownership
+```sh
+sudo chown -R $USER ${HOME}/google-coral/tutorials/docker/object_detection/couchpotato 
+```
+
+4. Modify `labels.txt` in the `models` directory
+
+```sh
+# labels.txt
+0 object_A
+1 object_B
+2 ...
+
+```
+
+5. Compile the TF lite file to the Edge TPU platform
+```
+edgetpu_compiler output_tflite_graph.tflite
+```
+
+6. Rename the file
+```
+mv output_tflite_graph_edgetpu.tflite ssd_mobilenet_v2_couchpotato_quant_edgetpu.tflite
+```
+
+# Test the new model
+
+1. Push the files to the Coral board
+```
+mdt push ssd_mobilenet_v2_couchpotato_quant_edgetpu.tflite
+
+mdt push labels.txt
+```
+
+2. Run the detection
+```
+edgetpu_detect_server --model ssd_mobilenet_v2_couchpotato_quant_edgetpu.tflite --labels labels.couchpotato.txt
+```
+
+Notice the performance (i.e. confidence) of recognizing each family member, and re-train with more groudh truth images if required. Once we are satisfied with the object detection model, we can work on storing the metrics in Elasticsearch for further analysis.
