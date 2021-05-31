@@ -192,4 +192,4 @@ mdt push labels.txt
 edgetpu_detect_server --model ssd_mobilenet_v2_couchpotato_quant_edgetpu.tflite --labels labels.couchpotato.txt
 ```
 
-Notice the performance (i.e. confidence) of recognizing each family member, and re-train with more groudh truth images if required. Once we are satisfied with the object detection model, we can work on storing the metrics in Elasticsearch for further analysis.
+Notice the performance (i.e. confidence) of recognizing each family member, and re-train with more ground truth images if required. Once we are satisfied with the object detection model, we can work on storing the metrics in Elasticsearch for further analysis.
