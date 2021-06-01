@@ -20,7 +20,7 @@ conda install elasticsearch=7 elasticsearch-dsl=7
 
 ## 1.2. Test the connection
 
-> Script at [script/elasticsearch.py](script/elasticsearch.py)
+> Script at [scripts/elasticsearch.py](scripts/elasticsearch.py)
 
 ```py
 from elasticsearch_dsl import connections
@@ -141,4 +141,5 @@ We should be able to see records ingested into Elasticsearch. Using Kibana to vi
 1. Stack Management > Index Patterns
 2. Discover
 3. Visualize
-   
+
+![Kibana visual](img/kibana_visual.png)
