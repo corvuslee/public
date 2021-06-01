@@ -1,21 +1,21 @@
-- [Preparation](#preparation)
-  - [Create a new conda environment](#create-a-new-conda-environment)
-- [Draw bounding boxes](#draw-bounding-boxes)
-- [Convert to tfrecord](#convert-to-tfrecord)
-- [Retrain the object detection model](#retrain-the-object-detection-model)
-  - [Setup the Docker container](#setup-the-docker-container)
-  - [Organize the dataset](#organize-the-dataset)
-  - [Prepare the checkpoint directory](#prepare-the-checkpoint-directory)
-  - [Configure the training pipeline](#configure-the-training-pipeline)
-  - [Start the retrain process](#start-the-retrain-process)
-- [Compile the model for Edge TPU](#compile-the-model-for-edge-tpu)
-- [Test the new model](#test-the-new-model)
+- [1. Preparation](#1-preparation)
+  - [1.1. Create a new conda environment](#11-create-a-new-conda-environment)
+- [2. Draw bounding boxes](#2-draw-bounding-boxes)
+- [3. Convert to tfrecord](#3-convert-to-tfrecord)
+- [4. Retrain the object detection model](#4-retrain-the-object-detection-model)
+  - [4.1. Setup the Docker container](#41-setup-the-docker-container)
+  - [4.2. Organize the dataset](#42-organize-the-dataset)
+  - [4.3. Prepare the checkpoint directory](#43-prepare-the-checkpoint-directory)
+  - [4.4. Configure the training pipeline](#44-configure-the-training-pipeline)
+  - [4.5. Start the retrain process](#45-start-the-retrain-process)
+- [5. Compile the model for Edge TPU](#5-compile-the-model-for-edge-tpu)
+- [6. Test the new model](#6-test-the-new-model)
 
 To start with, we can base on the a [pretrained model](https://coral.ai/models/object-detection/) -- SSD MobileNet v2 with the COCO dataset. There is a class called "person" in the COCO dataset, meaning that there is a high chance we can fine tune the model (i.e., transfer learning) to recognize individual family member.
 
-# Preparation
+# 1. Preparation
 
-## Create a new conda environment
+## 1.1. Create a new conda environment
 
 environment.yml
 ```yml
@@ -34,7 +34,7 @@ Activate the env and install labelImg with pip
 pip3 install labelImg
 ```
 
-# Draw bounding boxes
+# 2. Draw bounding boxes
 
 To fine tune the model recognizing individual family member, we need ground truth images. For this project, we have gathered 50 photos per person, and put the JPG images under two folders:
 * dataset/train
@@ -51,7 +51,7 @@ labelImg
 
 > When finished, we will see the JPG & XML file pair in the same folder.
 
-# Convert to tfrecord
+# 3. Convert to tfrecord
 
 1. Clone the TensorFlow Model Garden
 ```
@@ -73,11 +73,11 @@ export PYTHONPATH=$PYTHONPATH:`pwd`
    * train.tfrecord
    * val.tfrecord
 
-# Retrain the object detection model
+# 4. Retrain the object detection model
 
 > Ref: https://www.coral.ai/docs/edgetpu/retrain-detection/
 
-## Setup the Docker container
+## 4.1. Setup the Docker container
 
 Follow the steps in the guide above, and mount additional directory `couchpotato`
 
@@ -89,7 +89,7 @@ docker run --name edgetpu-detect \
 detect-tutorial-tf1
 ```
 
-## Organize the dataset
+## 4.2. Organize the dataset
 
 Within the docker container (tensorflow/models/research/):
 
@@ -103,13 +103,13 @@ Within the docker container (tensorflow/models/research/):
 
 > Looks like the SSDLite MobileDet has a higher mAP, which worths a try.
 
-## Prepare the checkpoint directory
+## 4.3. Prepare the checkpoint directory
 ```
 tar -xzvf couchpotato/ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03.tar.gz
 mv ssd_mobilenet_v2_quantized_300x300_coco_2019_01_03 ckpt
 ```
 
-## Configure the training pipeline
+## 4.4. Configure the training pipeline
 
 file:constants.sh
 ```sh
@@ -122,7 +122,7 @@ OUTPUT_DIR="${LEARN_DIR}/models"
 
 Modify `pipeline.config` following the [official guide](https://www.coral.ai/docs/edgetpu/retrain-detection/#configure-your-training-pipeline)
 
-## Start the retrain process
+## 4.5. Start the retrain process
 
 ```sh
 NUM_TRAINING_STEPS=500 && \
@@ -140,7 +140,7 @@ NUM_EVAL_STEPS=100
 > * screen -d
 > * screen -r
 
-# Compile the model for Edge TPU
+# 5. Compile the model for Edge TPU
 
 > Ref: https://www.coral.ai/docs/edgetpu/retrain-detection/#compile-the-model-for-the-edge-tpu
 
@@ -178,7 +178,7 @@ edgetpu_compiler output_tflite_graph.tflite
 mv output_tflite_graph_edgetpu.tflite ssd_mobilenet_v2_couchpotato_quant_edgetpu.tflite
 ```
 
-# Test the new model
+# 6. Test the new model
 
 1. Push the files to the Coral board
 ```
