@@ -89,6 +89,8 @@ cp examples-camera/gstreamer/*.py ~
 > ```py
 > t. ! queue ! glsvgoverlay name=gloverlay sync=false ! fakesink
 > ```
+>
+> Sample [gstreamer.py](scripts/gstreamer.py)
 
 `detect.py` is what we need to work on.
 
@@ -124,10 +126,12 @@ label = '{}% {}'.format(percent, labels.get(obj.id, obj.id))
 now = time.time()
 # Write to ES
 doc = Person()
-doc.event_dt = time.time()
+doc.event_dt = now
 doc.confident, doc.person = label.split()
 doc.save(index=index)
 ```
+
+> Sample [detect.py](scripts/detect.py)
 
 # 3. Run
 ```
