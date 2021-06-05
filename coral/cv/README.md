@@ -18,3 +18,6 @@ For task 1, we need an edge device which can perform fast ML inferences. There a
 2. [Connect the Coral camera](02_camera.md)
 3. [Transfer learning with custom dataset](03_transfer_learning.md)
 4. [Analyze with Elasticsearch](04_analyse_elasticsearch.md)
+
+# Architecture
+![couchpotato](img/couchpotato.png)
