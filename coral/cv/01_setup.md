@@ -10,14 +10,14 @@
 
 # 1. Setup the board on macOS
 > * Tested on Catalina (10.15)
-> * Caution: currently doesn't work on Big Sur
+> * Caution: currently doesn't work on Big Sur. Need a Windows 10 machine to perform until step 1.4
 
 ## 1.1. Conda
 
 Create a new environment
 ```sh
-conda create -n coralboard
-conda activate coralboard
+conda create -n coral
+conda activate coral
 ```
 
 ### 1.1.1. Python 3.8

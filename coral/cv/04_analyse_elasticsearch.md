@@ -9,10 +9,15 @@
 
 # 1. Preparation
 > Tested on Amazon Elasticsearch Services 7.10. We are skipping the provisioning process in this page, where the details can be found in the [official doc](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-gsg.html).
+>
+> Config:
+> * Dedicated master node: None
+> * Data node: 1x r6g.large
+> * EBS storage size: 30GB
 
 ## 1.1. Conda environment
 
-In our project's conda environment, install the Elasticsearch API
+In our project's conda environment, install the Elasticsearch API. According to the [repo](https://github.com/elastic/elasticsearch-dsl-py), Elasticsearch DSL is the high level library on top of the low level client. Let's give it a try:
 
 ```
 conda install elasticsearch=7 elasticsearch-dsl=7
@@ -94,7 +99,7 @@ cp examples-camera/gstreamer/*.py ~
 
 `detect.py` is what we need to work on.
 
-1. Comment out [line 110](https://github.com/google-coral/examples-camera/blob/19335531f599133e054ec2ddcc31733d24031ba5/gstreamer/detect.py#L110) since we are not at all interested in printing out the inference speed.
+1. Comment out [line 110](https://github.com/google-coral/examples-camera/blob/19335531f599133e054ec2ddcc31733d24031ba5/gstreamer/detect.py#L110) since we are not at all interested in printing out the inference speed in the console.
 
 ```py
 text_lines = [
@@ -147,3 +152,5 @@ We should be able to see records ingested into Elasticsearch. Using Kibana to vi
 3. Visualize
 
 ![Kibana visual](img/kibana_visual.png)
+
+Let's see who is the `couchpotato` of the day!

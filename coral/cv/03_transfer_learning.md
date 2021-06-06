@@ -1,7 +1,7 @@
 - [1. Preparation](#1-preparation)
   - [1.1. Create a new conda environment](#11-create-a-new-conda-environment)
 - [2. Draw bounding boxes](#2-draw-bounding-boxes)
-- [3. Convert to tfrecord](#3-convert-to-tfrecord)
+- [3. Convert to TFRecord](#3-convert-to-tfrecord)
 - [4. Retrain the object detection model](#4-retrain-the-object-detection-model)
   - [4.1. Setup the Docker container](#41-setup-the-docker-container)
   - [4.2. Organize the dataset](#42-organize-the-dataset)
@@ -19,7 +19,7 @@ To start with, we can base on the a [pretrained model](https://coral.ai/models/o
 
 environment.yml
 ```yml
-name: couchpotato
+name: coral
 channels:
   - defaults
   - conda-forge
@@ -29,7 +29,7 @@ dependencies:
   - pillow
 ```
 
-Activate the env and install labelImg with pip
+Activate the env and install [labelImg](https://github.com/tzutalin/labelImg) with pip
 ```
 pip3 install labelImg
 ```
@@ -44,6 +44,7 @@ To fine tune the model recognizing individual family member, we need ground trut
 labelImg
 ```
 
+Annotate both the train and val dataset. Below is an example for the val dataset only:
 1. **Open Dir**: dataset/val
 2. **Change Save Dir**: dataset/val (same folder)
 3. **Save format**: PascalVOC
@@ -51,7 +52,7 @@ labelImg
 
 > When finished, we will see the JPG & XML file pair in the same folder.
 
-# 3. Convert to tfrecord
+# 3. Convert to TFRecord
 
 1. Clone the TensorFlow Model Garden
 ```

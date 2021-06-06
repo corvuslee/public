@@ -46,7 +46,7 @@ from elasticsearch_dsl import connections, Document
 
 
 # Elasticsearch preparation
-es_endpoint = 'https://search-couchpotato-xxxxx.eu-west-2.es.amazonaws.com/'
+es_endpoint = 'https://search-couchpotato-xxxx.eu-west-2.es.amazonaws.com/'
 conn = connections.create_connection(hosts=[es_endpoint])
 index = 'couchpotato'
 

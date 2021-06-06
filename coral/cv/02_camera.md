@@ -28,19 +28,21 @@ sh download_models.sh
 
 ### 1.2.1. Object detection
 
+Use a pre-trained SSD-MobileNet model on the COCO dataset, which can recognize 80 classes of objects
 ```
 edgetpu_detect_server --model all_models/mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite --labels examples-camera/all_models/coco_labels.txt --top_k 5
 ```
 
 ### 1.2.2. Face detection
 
+Use a pre-trained SSD-MobileNet model which can detect faces (without labels)
 ```
 edgetpu_detect_server --model all_models/mobilenet_ssd_v2_face_quant_postprocess_edgetpu.tflite --top_k 5
 ```
 
 ### 1.2.3. Viewing the live stream
 
-Open a browser and go to *http://\<your-coral-board\>:4664*, and we will see bounding boxes and labels around the detected objects. Depending on the selected model, the Coral Dev Board Mini can achieve inference speed at 10+ FPS or 20+ FPS.
+Open a browser and go to *http://\<your-coral-board\>:4664*, and we will see bounding boxes and labels around the detected objects. Depending on the selected model, the Coral Dev Board Mini can achieve inference speed at 10+ FPS to 30+ FPS.
 
 > Example screenshot using `edgetpu_demo --stream`. Note that the inference using CPU is just 1.35fps vs TPU with 17.84fps
 
