@@ -61,7 +61,7 @@ Code to resolve some challenging problems
   * [![nbviewer](https://raw.githubusercontent.com/jupyter/design/master/logos/Badges/nbviewer_badge.svg)](https://nbviewer.jupyter.org/github/corvuslee/public/blob/master/NU/Studying_architectures_for_NLP_with_disaster_tweets_dataset.ipynb)
 
 # Edge ML
-* [Computer Vision with Coral Dev Board Mini (working)](coral/cv)
+* [Computer Vision with Coral Dev Board Mini](coral/cv)
 
 # Others
 * [Central Limit Theorem in R](R/central_limit_theorem.md)
