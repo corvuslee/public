@@ -33,3 +33,16 @@ There are several tested ways to authenticate:
 * Named profile with session token
 
 ### Named profile with session token
+
+
+.aws/credentials
+```
+empty
+```
+
+athena.properties
+```
+Workgroup=primary
+AwsCredentialsProviderClass=com.simba.athena.amazonaws.auth.profile.ProfileCredentialsProvider
+AwsCredentialsProviderArguments=default
+```
