@@ -34,11 +34,17 @@ There are several tested ways to authenticate:
 
 ### Named profile with session token
 
+1. Prepare the named profile, using `default` as an example
 
 .aws/credentials
 ```
-empty
+[default]
+aws_access_key_id = xxxx
+aws_secret_access_key = xxxx
+aws_session_token = xxxx
 ```
+
+2. Prepare the properties file
 
 athena.properties
 ```
@@ -46,3 +52,6 @@ Workgroup=primary
 AwsCredentialsProviderClass=com.simba.athena.amazonaws.auth.profile.ProfileCredentialsProvider
 AwsCredentialsProviderArguments=default
 ```
+
+3. Put it to the data sources folder
+
