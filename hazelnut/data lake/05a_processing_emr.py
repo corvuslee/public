@@ -3,6 +3,7 @@ from pyspark.sql import SparkSession
 spark = (
     SparkSession.builder.appName("reviews-transform").enableHiveSupport().getOrCreate()
 )
+spark.conf.set("spark.sql.sources.partitionOverwriteMode","dynamic")
 
 
 # variables
